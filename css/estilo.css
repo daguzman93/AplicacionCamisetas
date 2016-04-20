@@ -30,18 +30,27 @@ main {
 footer.page-footer{
     background-color:#0095ad;
 }
-footer.page-footer p{
-    font-weight: lighter;
-    font-size: large;
-    
-    
+
+td.white-text{
+    font-weight: 300;
+    font-size: 16pt;
+    text-align: right;
+    text-align: center;
+    padding: 3px;
 }
+td.borde-derecho{
+    border-right-style: solid;
+    border-right-color: white;
+    border-right-width: 1px;
+}
+
 .nav-wrapper a{
     font-family: Hero_propia_Light;
     color: #59595c;
     align-content: center;
     font-size: small;
 }
+
 .nav-wrapper a i{
     color: #0095ad;
 }
@@ -50,6 +59,21 @@ a.btn-floating i{
     background-color: #0095ad;
 }
 .top-buffer { 
-    margin-top:30px; 
+    position: relative;
+    top: 30px;
 }
-
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+}
