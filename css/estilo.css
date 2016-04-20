@@ -1,0 +1,55 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 19-abr-2016, 11:56:56
+    Author     : Daniel
+*/
+
+@font-face{
+    font-family: Hero_propia;
+    src: url("../fonts/hero/Hero.otf")format("opentype");
+}
+@font-face{
+    font-family: Hero_propia_Light;
+    src: url("../fonts/hero/Hero Light.otf")format("opentype");
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer.page-footer{
+    background-color:#0095ad;
+}
+footer.page-footer p{
+    font-weight: lighter;
+    font-size: large;
+    
+    
+}
+.nav-wrapper a{
+    font-family: Hero_propia_Light;
+    color: #59595c;
+    align-content: center;
+    font-size: small;
+}
+.nav-wrapper a i{
+    color: #0095ad;
+}
+a.btn-floating i{
+    color: white;
+    background-color: #0095ad;
+}
+.top-buffer { 
+    margin-top:30px; 
+}
+
