@@ -30,20 +30,37 @@ main {
 footer.page-footer{
     background-color:#0095ad;
 }
+td{
+    text-align: center;
+    padding: 3px;
+     
+}
 
 td.white-text{
     font-weight: 300;
     font-size: 16pt;
-    text-align: right;
-    text-align: center;
-    padding: 3px;
+    
+   
+   
 }
-td.borde-derecho{
+td.borde-derecho-blanco{
     border-right-style: solid;
     border-right-color: white;
     border-right-width: 1px;
+    
 }
 
+td.borde-derecho-gris{
+    border-right-style: solid;
+    border-right-color: #59595c;
+    border-right-width: 1px;
+}
+
+td.borde-derecho-cyan{
+    border-right-style: solid;
+    border-right-color: #0095ad;
+    border-right-width: 1px;
+}
 .nav-wrapper a{
     font-family: Hero_propia_Light;
     color: #59595c;
@@ -76,4 +93,8 @@ a.btn-floating i{
     .container {
         width: 1170px;
     }
+}
+.dropdown-button{
+    text-transform: none;
+    
 }
