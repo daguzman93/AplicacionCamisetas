@@ -32,22 +32,21 @@ footer.page-footer{
 }
 td{
     text-align: center;
-    padding: 3px;
-     
+    
 }
 
 td.white-text{
     font-weight: 300;
     font-size: 16pt;
-    
-   
-   
+    padding-top: 1px;
+    padding-bottom: 1px;
+
 }
 td.borde-derecho-blanco{
     border-right-style: solid;
     border-right-color: white;
     border-right-width: 1px;
-    
+
 }
 
 td.borde-derecho-gris{
@@ -56,16 +55,47 @@ td.borde-derecho-gris{
     border-right-width: 1px;
 }
 
-td.borde-derecho-cyan{
+a.borde-derecho-cyan{
     border-right-style: solid;
     border-right-color: #0095ad;
     border-right-width: 1px;
+    
 }
 .nav-wrapper a{
     font-family: Hero_propia_Light;
     color: #59595c;
     align-content: center;
     font-size: small;
+}
+.nav-wrapper a.enlace-superior{
+    font-family: Hero_propia_Light;
+    color: #59595c;
+    align-content: center;
+    font-size: smaller;
+
+}
+a.enlace-superior i{
+    font-size: large;
+    position: relative;
+    top: 6px;
+
+}
+.nav-wrapper td{
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+a.dropdown-button{
+    font-family: Hero_propia;
+    font-size: medium;
+}
+
+.nav-wrapper a.btn-floating{
+    position: relative;
+    height: 44px;
+    width: 45px;
+    left: 70px;
+    bottom: 10px;
 }
 
 .nav-wrapper a i{
@@ -74,14 +104,40 @@ td.borde-derecho-cyan{
 a.btn-floating i{
     color: white;
     background-color: #0095ad;
+    height: 49px;
+    width: 45px;
+    position: relative;
+    top: 2px;
 }
 .top-buffer { 
     position: relative;
-    top: 30px;
+    top: 35px;
+   
+}
+#registro-carrito{
+    position: relative;
+    left: 50px;
+}
+#menu-desplegable{
+    position: relative;
+    right: 100px;
+    background-color: white;
+    box-shadow: none;
+    
+}
+#logo{
+    position: relative;
+    right: 100px;
+    
+}
+#menu-desplegable td{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 130px !important;
 }
 @media (min-width: 768px) {
     .container {
-        width: 750px;
+        width: 750px ;
     }
 }
 @media (min-width: 992px) {
@@ -96,5 +152,20 @@ a.btn-floating i{
 }
 .dropdown-button{
     text-transform: none;
+    width: 140px;
+    text-align: center;
     
+}
+
+.dropdown-content li > a{
+    color: #59595c;
+    text-align: center;
+    
+}
+.dropdown-content li{
+    width: 140px !important;
+   
+}
+.dropdown-content{
+    width: 140px !important;
 }
