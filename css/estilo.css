@@ -120,7 +120,7 @@ a.btn-floating i{
 }
 #menu-desplegable{
     position: relative;
-    right: 100px;
+    right: 120px;
     background-color: white;
     box-shadow: none;
     
@@ -160,6 +160,7 @@ a.btn-floating i{
 .dropdown-content li > a{
     color: #59595c;
     text-align: center;
+    font-family: Hero_propia;
     
 }
 .dropdown-content li{
@@ -168,4 +169,14 @@ a.btn-floating i{
 }
 .dropdown-content{
     width: 140px !important;
+}
+.indicators{
+    display: none !important;
+}
+
+h5{
+    font-family: Hero_propia;
+}
+img.envio{
+    width: 40px;
 }
