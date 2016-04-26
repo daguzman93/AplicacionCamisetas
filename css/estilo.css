@@ -32,9 +32,8 @@ footer.page-footer{
 }
 td{
     text-align: center;
-    
-}
 
+}
 td.white-text{
     font-weight: 300;
     font-size: 16pt;
@@ -49,91 +48,95 @@ td.borde-derecho-blanco{
 
 }
 
-td.borde-derecho-gris{
+li.borde-derecho-gris{
     border-right-style: solid;
     border-right-color: #59595c;
     border-right-width: 1px;
+
 }
 
 a.borde-derecho-cyan{
     border-right-style: solid;
     border-right-color: #0095ad;
     border-right-width: 1px;
-    
+
 }
-.nav-wrapper a{
-    font-family: Hero_propia_Light;
+
+#login-carrito{
+    background: white;
+    box-shadow: none;
+    position: relative;   
+    left: 80px;  
+    top: 30px;
+    height: 25px;
+    line-height: 25px;
+}
+
+#login-carrito ul a:hover{
+    background-color: white !important;
+}
+#login-carrito a{
+    font-family: Hero_propia_light;
     color: #59595c;
-    align-content: center;
     font-size: small;
-}
-.nav-wrapper a.enlace-superior{
-    font-family: Hero_propia_Light;
-    color: #59595c;
-    align-content: center;
-    font-size: smaller;
+    padding-left: 8px;
+    padding-right: 8px;
 
 }
-a.enlace-superior i{
-    font-size: large;
+#login-carrito i{
+    font-size: 1.5rem;
+    height: 25px;
+    line-height: 25px;
+    margin-left: 4px;
+
+}
+
+#menu-desplegable{
     position: relative;
-    top: 6px;
-
-}
-.nav-wrapper td{
-    padding-top: 2px;
-    padding-bottom: 2px;
+    top: 30px;
 }
 
-a.dropdown-button{
+#menu-desplegable a{
+    color: #59595c;
     font-family: Hero_propia;
     font-size: medium;
 }
 
 .nav-wrapper a.btn-floating{
     position: relative;
-    height: 44px;
-    width: 45px;
     left: 70px;
-    bottom: 10px;
-}
+    top: 20px;
+    width: 45px;
+    height: 45px;
+    background-color: #0095ad;
 
+}
 .nav-wrapper a i{
     color: #0095ad;
 }
 a.btn-floating i{
     color: white;
     background-color: #0095ad;
-    height: 49px;
-    width: 45px;
+    font-size: 2.2rem;
     position: relative;
-    top: 2px;
+    top: 4px;
 }
 .top-buffer { 
     position: relative;
     top: 35px;
-   
-}
-#registro-carrito{
-    position: relative;
-    left: 50px;
+
 }
 #menu-desplegable{
     position: relative;
     right: 120px;
     background-color: white;
     box-shadow: none;
-    
+
 }
 #logo{
     position: relative;
     right: 100px;
-    
-}
-#menu-desplegable td{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width: 130px !important;
+
 }
 @media (min-width: 768px) {
     .container {
@@ -154,29 +157,20 @@ a.btn-floating i{
     text-transform: none;
     width: 140px;
     text-align: center;
-    
+
 }
 
 .dropdown-content li > a{
     color: #59595c;
     text-align: center;
     font-family: Hero_propia;
-    
+
 }
 .dropdown-content li{
     width: 140px !important;
-   
+
 }
 .dropdown-content{
     width: 140px !important;
 }
-.indicators{
-    display: none !important;
-}
 
-h5{
-    font-family: Hero_propia;
-}
-img.envio{
-    width: 40px;
-}

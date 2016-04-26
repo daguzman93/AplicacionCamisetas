@@ -10,6 +10,7 @@ and open the template in the editor.
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
         <link type="text/css" rel="stylesheet" href="css/estilo.css"/>
+        <link type="text/css" rel="stylesheet" href="css/principal.css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>MAS DE MIL</title>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -94,23 +95,56 @@ and open the template in the editor.
 
                 </div>
                 <div class="row">
-                    <div class="col l2">
-                        <img class="envio" src="img/envio.png">
+                    <div class="col l3 ">
+                        <div class="col l3">
+                            <img  id="camion" class="envio responsive-img" src="img/envio.png">
+                        </div>
+                        <div class="col l9">
+                            <h5 class="left-align">Envío gratis</h5> 
+                            <p >A partir de 3 productos</p>
+                        </div>
+                    </div>
+
+                    <div class="col l5 ">
+                        <div class="col l2">
+                            <img id="horas" class=" envio responsive-img" src="img/24h.png">
+                        </div>
+                        <div class="col l10">
+                            <h5 class="left-align">Te lo entregamos cuando quieras</h5> 
+                            <p >Tu decides el servicio de entrega. Si tienes prisa te lo entregamos en 24 h.</p>
+                        </div>
+
+                    </div>
+                    <div class="col l4 ">
+                        <div class="col l2">
+                            <img  id="camion" class="envio responsive-img" src="img/paquete.png">
+                        </div>
+                        <div class="col l10">
+                            <h5 class="left-align">Te lo ponemos fácil</h5> 
+                            <p>Cambios y devoluciones gratuitas durante 30 días.</p>
+                        </div>
+
+                    </div>
+
+                    <!--<div class="col l1 offset-l2">
+                        <img  id="camion" class="envio" src="img/envio.png">
                         <h5 class="left-align">Envío gratis</h5> 
-                        <p>A partir de 3 productos</p>
+                        <p >A partir de 3 productos</p>
                     </div>
                     <div class="col l5">
-                        <img class="envio" src="img/24h.png">
+                        <img id="horas" class="envio" src="img/24h.png">
                         <h5 class="left-align">Te lo entregamos cuando quieras</h5> 
-                        <p>Tu decides el servicio de entrega. Si tienes prisa te lo entregamos en 24 h.</p>
+                        <p >Tu decides el servicio de entrega. Si tienes prisa te lo entregamos en 24 h.</p>
                     </div>
-                    <div class="col l4">
-                        <img  class="envio" src="img/paquete.png">
+                    <div  class="col l4">
+                        <img id="paquete" class="envio" src="img/paquete.png">
                         <h5 class="left-align">Te lo ponemos fácil</h5> 
                         <p>Cambios y devoluciones gratuitas durante 30 días.</p>
-                    </div>
+                    </div>-->
                 </div>
+
             </div>
+
         </main>
         <footer class="page-footer">
             <?php include("./piedepagina.html"); ?> 
