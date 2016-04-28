@@ -126,32 +126,45 @@ a.btn-floating i{
     top: 35px;
 
 }
-#menu-desplegable{
-    position: relative;
-    right: 120px;
-    background-color: white;
-    box-shadow: none;
 
-}
-#logo{
-    position: relative;
-    right: 100px;
 
-}
 @media (min-width: 768px) {
     .container {
         width: 750px ;
     }
+
 }
 @media (min-width: 992px) {
     .container {
         width: 970px;
     }
+    
+    #menu-desplegable{
+        position: relative;
+        right: 120px;
+
+    }
+
 }
 @media (min-width: 1200px) {
     .container {
         width: 1170px;
     }
+    #logo{
+        position: relative;
+        right: 100px;
+
+    }
+    #menu-desplegable{
+        position: relative;
+        right: 120px;
+
+    }
+
+}
+#menu-desplegable{
+    background-color: white;
+    box-shadow: none;
 }
 .dropdown-button{
     text-transform: none;
@@ -173,4 +186,10 @@ a.btn-floating i{
 .dropdown-content{
     width: 140px !important;
 }
+
+#menu-contraido{
+    position: relative;
+    top: 45px;
+}
+
 

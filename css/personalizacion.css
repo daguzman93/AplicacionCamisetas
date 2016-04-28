@@ -1,0 +1,20 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28-abr-2016, 18:48:33
+    Author     : Daniel
+*/
+
+#drawingArea{
+    position: absolute;
+    top: 300px;
+   margin-left: 165px;
+
+}
+#tcanvas{
+    border: #0095ad;
+    border-style: solid;
+}
