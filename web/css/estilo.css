@@ -1,0 +1,208 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 19-abr-2016, 11:56:56
+    Author     : Daniel
+*/
+
+@font-face{
+    font-family: Hero_propia;
+    src: url("../fonts/hero/Hero.otf")format("opentype");
+}
+@font-face{
+    font-family: Hero_propia_Light;
+    src: url("../fonts/hero/Hero Light.otf")format("opentype");
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer.page-footer{
+    background-color:#0095ad;
+}
+.white-text{
+    font-weight: 300;
+    font-size: 16pt;
+    text-align: center;
+    height: 10px;
+    margin-top: 0px;
+
+
+}
+
+
+li.borde-derecho-gris{
+    border-right-style: solid;
+    border-right-color: #59595c;
+    border-right-width: 1px;
+
+}
+
+a.borde-derecho-cyan{
+    border-right-style: solid;
+    border-right-color: #0095ad;
+    border-right-width: 1px;
+
+}
+
+#login-carrito{
+    background: white;
+    box-shadow: none;
+    position: relative;   
+    left: 80px;  
+    top: 30px;
+    height: 25px;
+    line-height: 25px;
+}
+
+#login-carrito ul a:hover{
+    background-color: white !important;
+}
+#login-carrito a{
+    font-family: Hero_propia_light;
+    color: #59595c;
+    font-size: small;
+    padding-left: 8px;
+    padding-right: 8px;
+
+}
+#login-carrito i{
+    font-size: 1.5rem;
+    height: 25px;
+    line-height: 25px;
+    margin-left: 4px;
+
+}
+
+#menu-desplegable{
+    position: relative;
+    top: 30px;
+}
+
+#menu-desplegable a{
+    color: #59595c;
+    font-family: Hero_propia;
+    font-size: medium;
+}
+
+.nav-wrapper a.btn-floating{
+    position: relative;
+    left: 70px;
+    top: 20px;
+    width: 45px;
+    height: 45px;
+    background-color: #0095ad;
+
+}
+.nav-wrapper a i{
+    color: #0095ad;
+}
+a.btn-floating i{
+    color: white;
+    background-color: #0095ad;
+    font-size: 2.2rem;
+    position: relative;
+    top: 4px;
+}
+.top-buffer { 
+    position: relative;
+    top: 35px;
+
+}
+
+
+
+@media (min-width: 442px) {
+
+    #menu-contraido{
+        position: relative;
+        left: 75px;
+    }
+
+}
+
+
+@media (min-width: 768px) {
+    .container {
+        width: 750px ;
+    }
+    #menu-contraido{
+        position: relative;
+        left: 95px;
+        top: 20px;
+    }
+
+
+}
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+
+    #menu-desplegable{
+        position: relative;
+        right: 120px;
+
+    }
+    .borde-derecho-blanco{
+        border-right-style: solid;
+        border-right-color: white;
+        border-right-width: 1px;
+
+    }
+
+}
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+    #logo{
+        position: relative;
+        right: 100px;
+
+    }
+    #menu-desplegable{
+        position: relative;
+        right: 120px;
+
+    }
+
+}
+#menu-desplegable{
+    background-color: white;
+    box-shadow: none;
+}
+.dropdown-button{
+    text-transform: none;
+    width: 140px;
+    text-align: center;
+
+}
+
+.dropdown-content li > a{
+    color: #59595c;
+    text-align: center;
+    font-family: Hero_propia;
+
+}
+.dropdown-content li{
+    width: 140px !important;
+
+}
+.dropdown-content{
+    width: 140px !important;
+}
+
+
+
+
