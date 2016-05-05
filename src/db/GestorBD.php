@@ -7,10 +7,10 @@
  */
 
 $db = parse_ini_file("../../parametros.ini");
-define('DB_SERVER', mb_convert_encoding($db['DB_SERVER'], "auto", 'UTF-8'));
-define('DB_USER', mb_convert_encoding($db['DB_USER'], "auto", 'UTF-8'));
-define('DB_NAME', mb_convert_encoding($db['DB_NAME'], "auto", 'UTF-8'));
-define('DB_PASS', mb_convert_encoding($db['DB_PASS'], "auto", 'UTF-8'));
+define('DB_HOST', $db['host']) ;
+define('DB_USER', $db['user']);
+define('DB_NAME', $db['name']);
+define('DB_PASS', $db['pass']);
 
 class GestorBD {
     
