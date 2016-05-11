@@ -30,128 +30,114 @@ main {
 footer.page-footer{
     background-color:#0095ad;
 }
-.white-text{
-    font-weight: 300;
-    font-size: 16pt;
-    text-align: center;
-    height: 10px;
-    margin-top: 0px;
 
 
-}
-
-
-li.borde-derecho-gris{
-    border-right-style: solid;
-    border-right-color: #59595c;
-    border-right-width: 1px;
-
-}
 
 a.borde-derecho-cyan{
     border-right-style: solid;
     border-right-color: #0095ad;
     border-right-width: 1px;
 
-}
-
-#login-carrito{
-    background: white;
-    box-shadow: none;
-    position: relative;   
-    left: 80px;  
-    top: 30px;
-    height: 25px;
-    line-height: 25px;
-}
-
-#login-carrito ul a:hover{
-    background-color: white !important;
-}
-#login-carrito a{
-    font-family: Hero_propia_light;
-    color: #59595c;
-    font-size: small;
-    padding-left: 8px;
-    padding-right: 8px;
-
-}
-#login-carrito i{
-    font-size: 1.5rem;
-    height: 25px;
-    line-height: 25px;
-    margin-left: 4px;
 
 }
 
-#menu-desplegable{
-    position: relative;
-    top: 30px;
-}
-
-#menu-desplegable a{
+nav ul a.dropdown-button{
     color: #59595c;
     font-family: Hero_propia;
     font-size: medium;
+    width: 133px;
+    text-align: center;
+    line-height: 50px;
 }
 
-.nav-wrapper a.btn-floating{
-    position: relative;
-    left: 70px;
-    top: 20px;
-    width: 45px;
-    height: 45px;
-    background-color: #0095ad;
-
+nav{
+    background-color: white;
 }
-.nav-wrapper a i{
+
+nav .button-collapse i{
     color: #0095ad;
+}
+
+
+a.btn-floating{
+    width: 40px;
+    height: 40px;
+    background-color: #0095ad;
 }
 a.btn-floating i{
     color: white;
     background-color: #0095ad;
-    font-size: 2.2rem;
-    position: relative;
-    top: 4px;
-}
-.top-buffer { 
-    position: relative;
-    top: 35px;
+    line-height: 41px;
+
 
 }
+.dropdown-content li > a{
+    color: #59595c;
+    text-align: center;
+    font-family: Hero_propia;
 
+}
+.dropdown-content li{
+    width: 133px !important;
 
+}
+.dropdown-content{
+    width: 133px !important;
+}
+@media (min-width: 1024px) {
 
-@media (min-width: 442px) {
-
-    #menu-contraido{
+    .container{
+        min-width: 1014px;
+    }
+    footer.page-footer{
+        background-color:#0095ad;
         position: relative;
-        left: 75px;
+        top: 65px; 
     }
-
-}
-
-
-@media (min-width: 768px) {
-    .container {
-        width: 750px ;
-    }
-    #menu-contraido{
+    main{
         position: relative;
-        left: 95px;
-        top: 20px;
+        top: 65px; 
     }
-
-
-}
-@media (min-width: 992px) {
-    .container {
-        width: 970px;
+    nav{
+        height: 130px;
     }
+    a.brand-logo{
+        max-width: 230px;
 
-    #menu-desplegable{
+    }
+    nav .hide-on-med-and-down{
         position: relative;
-        right: 120px;
+        top: 50px; 
+
+    }
+    nav .hide-on-med-and-down .enlace-superior{
+        font-family: Hero_propia;
+        color: #59595c;
+        font-size: small;
+        padding-left: 8px;
+        padding-right: 8px;
+        position: relative;
+        bottom: 50px;
+        height: 25px;
+        line-height: 25px;
+
+
+    }
+    nav .hide-on-med-and-down .borde-derecho-gris{
+        border-right-style: solid;
+        border-right-color: #59595c;
+        border-right-width: 1px;
+
+    }
+    nav .hide-on-med-and-down .enlace-superior:hover{
+        background-color: white !important;
+
+    }
+    nav .hide-on-med-and-down .enlace-superior i{
+        height: 25px;
+        line-height: 25px;
+        font-size: 1.5rem;
+        margin-left: 2px;
 
     }
     .borde-derecho-blanco{
@@ -162,47 +148,26 @@ a.btn-floating i{
     }
 
 }
+@media (max-width: 1200px) {
+
+    a.brand-logo{
+        width: 105px;
+    }
+
+}
+.white-text{
+    font-weight: 300;
+    font-size: 15pt;
+    text-align: center;
+    line-height: 10px;
+    height: 5px;
+
+}
+.enlace-superior i{
+    color: #0095ad;
+}
 @media (min-width: 1200px) {
     .container {
-        width: 1170px;
+        min-width: 1200px;
     }
-    #logo{
-        position: relative;
-        right: 100px;
-
-    }
-    #menu-desplegable{
-        position: relative;
-        right: 120px;
-
-    }
-
 }
-#menu-desplegable{
-    background-color: white;
-    box-shadow: none;
-}
-.dropdown-button{
-    text-transform: none;
-    width: 140px;
-    text-align: center;
-
-}
-
-.dropdown-content li > a{
-    color: #59595c;
-    text-align: center;
-    font-family: Hero_propia;
-
-}
-.dropdown-content li{
-    width: 140px !important;
-
-}
-.dropdown-content{
-    width: 140px !important;
-}
-
-
-
-

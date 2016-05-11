@@ -1,0 +1,116 @@
+<?php
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ * Description of Camiseta
+ *
+ * @author Daniel
+ */
+class Camiseta implements JsonSerializable {
+
+    //put your code here
+    private $id, $nombre, $stock, $talla, $color, $genero, $delantera, $trasera, $precio;
+
+    public function __construct($id,$nombre, $stock, $talla, $color, $genero, $delantera, $trasera, $precio) {
+        $this->id = $id;
+        $this->nombre = $nombre;
+        $this->stock = $stock;
+        $this->talla = $talla;
+        $this->color = $color;
+        $this->genero = $genero;
+        $this->delantera = $delantera;
+        $this->trasera = $trasera;
+        $this->precio = $precio;
+    }
+
+    function getId() {
+        return $this->id;
+    }
+
+    function getNombre() {
+        return $this->nombre;
+    }
+
+    function getStock() {
+        return $this->stock;
+    }
+
+    function getTalla() {
+        return $this->talla;
+    }
+
+    function getColor() {
+        return $this->color;
+    }
+
+    function getGenero() {
+        return $this->genero;
+    }
+
+    function getDelantera() {
+        return $this->delantera;
+    }
+
+    function getTrasera() {
+        return $this->trasera;
+    }
+
+    function getPrecio() {
+        return $this->precio;
+    }
+
+
+    function setNombre($nombre) {
+        $this->nombre = $nombre;
+    }
+
+    function setStock($stock) {
+        $this->stock = $stock;
+    }
+
+    function setTalla($talla) {
+        $this->talla = $talla;
+    }
+
+    function setColor($color) {
+        $this->color = $color;
+    }
+
+    function setGenero($genero) {
+        $this->genero = $genero;
+    }
+
+    function setDelantera($delantera) {
+        $this->delantera = $delantera;
+    }
+
+    function setTrasera($trasera) {
+        $this->trasera = $trasera;
+    }
+
+    function setPrecio($precio) {
+        $this->precio = $precio;
+    }
+
+    public function jsonSerialize() {
+//        return [
+//            'camiseta'.$this->id => [
+//                'nombre' => $this->nombre,
+//                'stock' => $this->stock,
+//                'talla' => $this->talla,
+//                'color' => $this->color,
+//                'genero' => $this->genero,
+//                'delantera' => $this->delantera,
+//                'trasera' => $this->trasera,
+//                'precio' => $this->precio
+//            ]
+//        ];
+         return (object) get_object_vars($this);
+    }
+
+}

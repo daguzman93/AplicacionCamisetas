@@ -58,68 +58,68 @@ and open the template in the editor.
             <div class="container ">
                 <h5 class="center-align">Nuestras camisetas más vendidas</h5> 
                 <div class="row">
-                    <div class="col l2 s6 offset-l1">
+                    <div class="col l2 offset-l1 s4">
                         <img class="materialboxed responsive-img" src="img/fotosMasdeMil/camisetas/modeloMangaCortaHombre.jpg">
                     </div>
-                    <div class="col l2 s6">
+                    <div class="col l2 s4">
                         <img class="materialboxed responsive-img"  src="img/fotosMasdeMil/camisetas/modeloMangaCortaHombre.jpg">
                     </div>
-                    <div class="col l2 s6">
+                    <div class="col l2 s4">
                         <img class="materialboxed responsive-img"  src="img/fotosMasdeMil/camisetas/modeloMangaCortaHombre.jpg">
                     </div>
-                    <div class="col l2 s6">
+                    <div class="col l2 s4 offset-s2">
                         <img class="materialboxed responsive-img"  src="img/fotosMasdeMil/camisetas/modeloMangaCortaHombre.jpg">
                     </div>
-                    <div class="col l2 s6">
+                    <div class="col l2 s4">
                         <img class="materialboxed responsive-img"  src="img/fotosMasdeMil/camisetas/modeloMangaCortaHombre.jpg">
                     </div>
 
                 </div>
                 <h5 class="center-align">Nuestras novedades del mes</h5> 
                 <div class="row">
-                    <div class="col l2 offset-l1 s6">
+                    <div class="col l2 offset-l1 s4">
                         <img class="materialboxed responsive-img" src="img/fotosMasdeMil/camisetas/modeloMangaCortaHombre.jpg">
                     </div>
-                    <div class="col l2 s6">
+                    <div class="col l2 s4">
                         <img class="materialboxed responsive-img"  src="img/fotosMasdeMil/camisetas/modeloMangaCortaHombre.jpg">
                     </div>
-                    <div class="col l2 s6">
+                    <div class="col l2 s4">
                         <img class="materialboxed responsive-img"  src="img/fotosMasdeMil/camisetas/modeloMangaCortaHombre.jpg">
                     </div>
-                    <div class="col l2 s6">
+                    <div class="col l2 s4 offset-s2">
                         <img class="materialboxed responsive-img"  src="img/fotosMasdeMil/camisetas/modeloMangaCortaHombre.jpg">
                     </div>
-                    <div class="col l2 s6">
+                    <div class="col l2 s4">
                         <img class="materialboxed responsive-img"  src="img/fotosMasdeMil/camisetas/modeloMangaCortaHombre.jpg">
                     </div>
 
                 </div>
                 <div class="row">
-                    <div class="col l3 s12">
-                        <div class="col l3 m1 s2">
+                    <div class="col l3  s12">
+                        <div class="col l3 m2 s2">
                             <img  id="camion" class="envio responsive-img" src="img/envio.png">
                         </div>
-                        <div class="col l9 m11 s10">
+                        <div class="col l9 m10 s10">
                             <h5 class="left-align">Envío gratis</h5> 
                             <p class="envio" >A partir de 3 productos</p>
                         </div>
                     </div>
 
-                    <div class="col l5 s12">
-                        <div class="col l2 m1 s2">
+                    <div class="col l5  s12">
+                        <div class="col l2 m2 s2">
                             <img id="horas" class=" envio responsive-img" src="img/24h.png">
                         </div>
-                        <div class="col l10 m11 s10">
+                        <div class="col l10 m10 s10">
                             <h5 class="left-align">Te lo entregamos cuando quieras</h5> 
                             <p class="envio" >Tu decides el servicio de entrega. Si tienes prisa te lo entregamos en 24 h.</p>
                         </div>
 
                     </div>
-                    <div class="col l4 s12">
-                        <div class="col l2 m1 s2">
+                    <div class="col l4  s12">
+                        <div class="col l2 m2 s2">
                             <img  id="camion" class="envio responsive-img" src="img/paquete.png">
                         </div>
-                        <div class="col l10 m11 s10">
+                        <div class="col l10 m10 s10">
                             <h5 class="left-align">Te lo ponemos fácil</h5> 
                             <p class="envio">Cambios y devoluciones gratuitas durante 30 días.</p>
                         </div>

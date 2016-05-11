@@ -10,26 +10,47 @@ and open the template in the editor.
 
 #drawingArea{
     position: absolute;
-    top: 300px;
+    top: 110px;
     margin-left: 165px;
 
+}
+
+#area-camiseta{
+    width: 480px;
 }
 #tcanvas{
     border: #0095ad;
     border-style: solid;
     border-width: 0.5px;
+    
 }
 
 #delantera{
-    
+
     border-color: #0095ad;
     border-style: solid;
     border-width: 0.5px;
 }
 
 #trasera{
-    
+
     border-color: #0095ad;
     border-style: solid;
     border-width: 0.5px;
+}
+.color{
+    border-style: solid;
+    border-color: black;
+    border-width: 0.5px;
+    color: black;
+    text-align: center;
+}
+
+.images-genero{
+   border-style: solid;
+   border-color: #0095ad;
+   border-width: 0.5px;
+   height: 90px !important;
+   background-size: cover;
+   width: 80px !important;
 }
