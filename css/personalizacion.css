@@ -1,0 +1,167 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28-abr-2016, 18:48:33
+    Author     : Daniel
+*/
+
+#drawingArea{
+    position: absolute;
+    top: 110px;
+    margin-left: 160px;
+
+}
+
+#area-camiseta{
+    width: 480px;
+}
+#tcanvas{
+    border: #0095ad;
+    border-style: solid;
+    border-width: 0.5px;
+
+}
+
+#delantera{
+
+    border-color: #0095ad;
+    border-style: solid;
+    border-width: 0.5px;
+    height: 100px !important;
+    background-size: cover;
+    /*width: 80px !important;*/
+}
+
+#trasera{
+
+    border-color: #0095ad;
+    border-style: solid;
+    border-width: 0.5px;
+    height: 100px !important;
+    background-size: cover;
+    /*width: 80px !important;*/
+}
+.color{
+    border-style: solid;
+    border-color: black;
+    border-width: 0.5px;
+    color: black;
+    text-align: center;
+}
+
+.images-genero{
+    border-style: solid;
+    border-color: #0095ad;
+    border-width: 0.5px;
+    height: 100px !important;
+    
+    /*width: 90px !important;*/
+}
+.images-disenos{
+    border-style: solid;
+    border-color: #0095ad;
+    border-width: 0.5px;
+    height: 100px !important;
+   
+    /*width: 90px !important;*/
+}
+
+main a{
+    font-family: Hero_propia;
+}
+
+main p{
+    font-family: Hero_propia;
+}
+
+.btn{
+    font-size: small;
+    text-transform: none !important;
+    padding: 0 0.5em !important;
+    line-height: 30px;
+    height: 30px;
+    letter-spacing:normal !important;
+    background-color: #0095ad;
+    z-index: 0;
+
+}
+
+.btn:hover{
+    background-color: #0095ad !important;
+}
+.icono-menu{
+    height: 47px;
+    z-index: 1;
+    position: relative;
+    top: 40px;
+    right: 30px;
+
+}
+
+a.active-genero{
+    color: #0095ad;
+}
+
+a.genero{
+    color: #59595c;
+}
+
+a.boton-active{
+
+    background-color: #59595c;
+}
+a.boton-active:hover{
+
+    background-color: #59595c !important;
+}
+
+#precio{
+    color: #0095ad;
+    font-size: xx-large;
+    margin-top: 6px;
+    margin-bottom: 4px;
+}
+
+#anadir-carro{
+    font-size: medium;
+    text-transform: none !important;
+    padding: 0 1em !important;
+    line-height: 40px;
+    height: 40px;
+    letter-spacing:normal !important;
+    background-color: #0095ad;
+
+}
+
+.filled-in[type="checkbox"]:checked + label::after{
+    background-color: #0095ad !important;
+    border: 2px solid #0095ad !important;
+}
+
+label{
+    color: black !important;
+}
+
+.letra-pequena{
+    font-size: small;
+}
+
+.alineacion-txt{
+    background-color: white;
+    border-style: solid;
+    border-color: #0095ad;
+    border-width: 0.5px;
+    position: relative;
+    top: 10px;
+    left: 5px;
+}
+.alineacion-txt:hover{
+   
+    background-color: white !important;
+}
+.alineacion-txt i{
+    color: black;
+}
