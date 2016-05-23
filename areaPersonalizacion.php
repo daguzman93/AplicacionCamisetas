@@ -14,6 +14,7 @@ $camiseta = $lista[0];
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
         <link type="text/css" rel="stylesheet" href="css/estilo.css"/>
         <link type="text/css" rel="stylesheet" href="css/personalizacion.css"/>
+        <link type="text/css" rel="stylesheet" href="css/jquery.simplecolorpicker.css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Tu lo diseñas</title>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -21,6 +22,7 @@ $camiseta = $lista[0];
         <script src="http://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.5.0/fabric.min.js"></script>
         <script type="text/javascript" src="js/principal.js"></script>
         <script type="text/javascript" src="js/personalizacion.js"></script>
+        <script type="text/javascript" src="js/jquery.simplecolorpicker.js"></script>
 
     </head>
     <body>

@@ -7,6 +7,7 @@ window.onload = function () {
     var canvas = this.__canvas = new fabric.Canvas('tcanvas');
     canvas.setHeight(250);
     canvas.setWidth(175);
+    
     var texto = new fabric.Text("Coloca\ntu diseño,\nfoto o\ntexto", {
         fontFamily: ' Hero_propia',
         textAlign: 'center',
@@ -122,15 +123,21 @@ window.onload = function () {
     $('#sube-imagen').click(function () {
         var content = '<div class="col l12"><div class="col l12"><p class="letra-pequena">Sube tu diseño, ya sea una fotografía, un archivo JPG o un archivo PNG sin fondo.</p></div></div>';
         content += '<div class="col l12"><div class="col l8"><form action="#"><div class="file-field input-field"><div class="waves-effect waves-light btn z-depth-0"><span>Examinar</span><input type="file" multiple></div><div class="file-path-wrapper"><input class="file-path validate" type="text" ></div></div><p><input type="checkbox" class="filled-in" id="filled-in-box"/><label for="filled-in-box">Acepto las condiciones de uso. Leer más.</label></p></form></div><div class="col l4"><p>Peso máximo 25MB</p></div></div>';
-       
+
         $('#area-modificable').html(content);
         $('.boton-active').attr('class', 'waves-effect waves-light btn z-depth-0');
         $(this).attr('class', 'waves-effect waves-light btn z-depth-0 boton-active');
     });
     $('#escribe-texto').click(function () {
         var content = '<div class="col l12"><div class="col l12"><p class="letra-pequena">Añade el texto que quieras, al tamaño que quieras y donde desees.</p></div></div>';
-         content +='<div class="col l12"><div class="col l1"><p>Texto</p></div><div class="col l1 offset-l3"><p>Color</p></div><div class="col l1"><p>OK</p></div><div class="col l2 offset-l1"><p>Justificación</p></div><div class="col l1"><a id="alineacion-izq" class="btn z-depth-0 alineacion-txt"><i class="material-icons">format_align_left</i></a></div><div class="col l1"><a id="alineacion-central" class="btn z-depth-0 alineacion-txt"><i class="material-icons">format_align_center</i></a></div><div class="col l1"><a id="alineacion-drcha" class="btn z-depth-0 alineacion-txt"><i class="material-icons">format_align_right</i></a></div></div><div class="col l8"><form action="#"><div class="row"><div class="input-field col l7"><input id="primer-texto" type="text" class="validate"></div><div class="input-field col l7"><input id="segundo-texto" type="text" class="validate"></div></div></form></div></div>';
+        content += '<div class="col l12"><div class="col l1"><p>Texto</p></div><div class="col l1 offset-l3"><p>Color</p></div><div class="col l1 "><p>OK</p></div><div class="col l2 offset-l1"><p>Justificación</p></div><div class="col l1"><a id="alineacion-izq" class="btn z-depth-0 alineacion-txt"><i class="material-icons">format_align_left</i></a></div><div class="col l1"><a id="alineacion-central" class="btn z-depth-0 alineacion-txt"><i class="material-icons">format_align_center</i></a></div><div class="col l1"><a id="alineacion-drcha" class="btn z-depth-0 alineacion-txt"><i class="material-icons">format_align_right</i></a></div></div>\
+ <div class="col l12"><form action="#"><div class="row"><div class="input-field col l4"><input id="primer-texto" type="text" class="validate"></div><div class="col l1"><select name="colorpicker"><option value="#7bd148">Green</option><option value="#5484ed">Bold blue</option><option value="#a4bdfc">Blue</option><option value="#46d6db">Turquoise</option><option value="#7ae7bf">Light green</option><option value="#51b749">Bold green</option><option value="#fbd75b">Yellow</option><option value="#ffb878">Orange</option><option value="#ff887c">Red</option><option value="#dc2127">Bold red</option><option value="#dbadff">Purple</option><option value="#e1e1e1">Gray</option></select></div><div class="col l1"><a class="waves-effect waves-light btn z-depth-0" href="#"><i class="material-icons">check</i></a></div></div>\
+<div class="row"><div class="input-field col l4"><input id="primer-texto" type="text" class="validate"></div><div class="col l1"><a class="waves-effect waves-light btn modal-trigger z-depth-0" href="#modal-colores"><i class="material-icons">colorize</i></a></div><div class="col l1"><a class="waves-effect waves-light btn z-depth-0" href="#"><i class="material-icons">check</i></a></div><div class="col l4 offset-l1"><div class="input-field col l12"><select name="tipo-letra"><option value="" disabled selected>Tipo de letra</option><option value="1">Option 1</option><option value="2">Option 2</option><option value="3">Option 3</option></select></div></div></div>\
+<div class="row"><div class="input-field col l4"><input id="primer-texto" type="text" class="validate"></div><div class="col l1"><a class="waves-effect waves-light btn modal-trigger z-depth-0" href="#modal-colores"><i class="material-icons">colorize</i></a></div><div class="col l1"><a class="waves-effect waves-light btn z-depth-0" href="#"><i class="material-icons">check</i></a></div></div>\
+<div class="row"><div class="input-field col l4"><input id="primer-texto" type="text" class="validate"></div><div class="col l1"><a class="waves-effect waves-light btn modal-trigger z-depth-0" href="#modal-colores"><i class="material-icons">colorize</i></a></div><div class="col l1"><a class="waves-effect waves-light btn z-depth-0" href="#"><i class="material-icons">check</i></a></div></div></form></div></div>';
         $('#area-modificable').html(content);
+        $('select[name="tipo-letra"]').material_select();
+        $('select[name="colorpicker"]').simplecolorpicker({picker: true, theme: 'glyphicons'});
         $('.boton-active').attr('class', 'waves-effect waves-light btn z-depth-0');
         $(this).attr('class', 'waves-effect waves-light btn z-depth-0 boton-active');
     });
@@ -153,8 +160,7 @@ window.onload = function () {
         $(this).attr('class', 'waves-effect waves-light btn z-depth-0 boton-active');
     });
 
-
-
+    
     $(document).on('click', '.images-genero', function () {
         $('#area-camiseta').attr('src', this.src);
         $('#delantera').attr('src', this.src);

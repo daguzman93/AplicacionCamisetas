@@ -165,3 +165,12 @@ label{
 .alineacion-txt i{
     color: black;
 }
+
+input.validate{
+    height: 1.25rem !important;
+    
+}
+.input-field input[type=text]:focus {
+    border-bottom: #0095ad !important;
+    box-shadow: 0 1px 0 0 #0095ad !important;
+}
