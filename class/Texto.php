@@ -16,11 +16,13 @@ class Texto {
     //put your code here
     private $id, $nombre, $ruta, $precio;
 
-    function __construct($nombre, $ruta, $precio) {
+    function __construct($id, $nombre, $ruta, $precio) {
+        $this->id = $id;
         $this->nombre = $nombre;
         $this->ruta = $ruta;
         $this->precio = $precio;
     }
+
     function getId() {
         return $this->id;
     }
@@ -48,7 +50,5 @@ class Texto {
     function setPrecio($precio) {
         $this->precio = $precio;
     }
-
-
 
 }

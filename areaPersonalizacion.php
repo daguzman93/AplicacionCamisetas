@@ -15,6 +15,8 @@ $camiseta = $lista[0];
         <link type="text/css" rel="stylesheet" href="css/estilo.css"/>
         <link type="text/css" rel="stylesheet" href="css/personalizacion.css"/>
         <link type="text/css" rel="stylesheet" href="css/jquery.simplecolorpicker.css"/>
+        <link type="text/css" rel="stylesheet" href="css/jquery.simplecolorpicker-glyphicons.css"/>
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Tu lo diseñas</title>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -101,41 +103,41 @@ $camiseta = $lista[0];
                                     <?php endfor; ?>
                                 </div>
                             </div>  
-                            <div class="col l12">
+                            <div id="colores-camiseta">
                                 <div class="col l12">
-                                    <p class="letra-pequena">Elige tu color</p>
-                                </div>
-
-                            </div>
-                            <div class="col l12">
-                                <div class="col l1">
-                                    <a class="color btn-floating z-depth-0 white"></a>
-                                </div>
-                                <div class="col l1">
-                                    <a class=" color btn-floating z-depth-0 black"></a>
-                                </div>
-                                <div class="col l1">
-                                    <a class="color btn-floating z-depth-0 red"></a>
-                                </div>
-                                <div class="col l1">
-                                    <a class="color btn-floating z-depth-0 blue"></a>
-                                </div>
-                                <div class="col l1">
-                                    <a class="color btn-floating z-depth-0 green"></a>
-                                </div>
-                                <div class="col l1">
-                                    <a class="color btn-floating z-depth-0 orange"></a>
-                                </div>
-                                <div class="col l1">
-                                    <a class="color btn-floating z-depth-0 grey"></a>
-                                </div>
-                                <div class="col l1">
-                                    <a class="color btn-floating z-depth-0 yellow"></a>
+                                    <div class="col l12">
+                                        <p class="letra-pequena">Elige tu color</p>
+                                    </div>
 
                                 </div>
+                                <div class="col l12">
+                                    <div class="col l1">
+                                        <a class="color btn-floating z-depth-0 white"></a>
+                                    </div>
+                                    <div class="col l1">
+                                        <a class=" color btn-floating z-depth-0 black"></a>
+                                    </div>
+                                    <div class="col l1">
+                                        <a class="color btn-floating z-depth-0 red"></a>
+                                    </div>
+                                    <div class="col l1">
+                                        <a class="color btn-floating z-depth-0 blue"></a>
+                                    </div>
+                                    <div class="col l1">
+                                        <a class="color btn-floating z-depth-0 green"></a>
+                                    </div>
+                                    <div class="col l1">
+                                        <a class="color btn-floating z-depth-0 orange"></a>
+                                    </div>
+                                    <div class="col l1">
+                                        <a class="color btn-floating z-depth-0 grey"></a>
+                                    </div>
+                                    <div class="col l1">
+                                        <a class="color btn-floating z-depth-0 yellow"></a>
 
+                                    </div>
 
-
+                                </div>
                             </div>
                             <div class="col l12">
                                 <div class="col l12">

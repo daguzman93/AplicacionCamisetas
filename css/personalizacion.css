@@ -8,6 +8,90 @@ and open the template in the editor.
     Author     : Daniel
 */
 
+@font-face{
+    font-family: Abel;
+    src: url("../fonts/Abel/Abel-Regular.ttf");
+}
+@font-face{
+    font-family: Alegreya Sans;
+    src: url("../fonts/Alegreya_Sans/AlegreyaSans-Regular.ttf");
+}
+@font-face{
+    font-family: Anton;
+    src: url("../fonts/Anton/Anton.ttf");
+}
+@font-face{
+    font-family: Arimo;
+    src: url("../fonts/Arimo/Arimo-Regular.ttf");
+}
+@font-face{
+    font-family: Arvo;
+    src: url("../fonts/Arvo/Arvo-Regular.ttf");
+}
+@font-face{
+    font-family: Asap;
+    src: url("../fonts/Asap/Asap-Regular.ttf");
+}
+@font-face{
+    font-family: Bitter;
+    src: url("../fonts/Bitter/Bitter-Regular.ttf");
+}
+@font-face{
+    font-family: Bree Serif;
+    src: url("../fonts/Bree_Serif/BreeSerif-Regular.ttf");
+}
+@font-face{
+    font-family: Cabin;
+    src: url("../fonts/Cabin/Cabin-Regular.ttf");
+}
+@font-face{
+    font-family: Candal;
+    src: url("../fonts/Candal/Candal.ttf");
+}
+@font-face{
+    font-family: Covered;
+    src: url("../fonts/Covered_By_Your_Grace/CoveredByYourGrace.ttf");
+}
+@font-face{
+    font-family: Dosis;
+    src: url("../fonts/Dosis/Dosis-Regular.ttf");
+}
+@font-face{
+    font-family: Droid Sans;
+    src: url("../fonts/Droid_Sans/DroidSans.ttf");
+}
+@font-face{
+    font-family: Droid Serif;
+    src: url("../fonts/Droid_Serif/DroidSerif.ttf");
+}
+@font-face{
+    font-family: Fjalla One;
+    src: url("../fonts/Fjalla_One/FjallaOne-Regular.ttf");
+}
+@font-face{
+    font-family: Hind;
+    src: url("../fonts/Hind/Hind-Regular.ttf");
+}
+@font-face{
+    font-family: Inconsolata;
+    src: url("../fonts/Inconsolata/Inconsolata-Regular.ttf");
+}
+@font-face{
+    font-family: Indie Flower;
+    src: url("../fonts/Indie_Flower/Indie_Flower.ttf");
+}
+@font-face{
+    font-family: Josefin;
+    src: url("../fonts/Josefin_Sans/JosefinSans-Regular.ttf");
+}
+@font-face{
+    font-family: Lato;
+    src: url("../fonts/Lato/Lato-Regular.ttf");
+}
+@font-face{
+    font-family: Libre Baskerville;
+    src: url("../fonts/Libre_Baskerville/LibreBaskerville-Regular.ttf");
+}
 #drawingArea{
     position: absolute;
     top: 110px;
@@ -57,15 +141,17 @@ and open the template in the editor.
     border-color: #0095ad;
     border-width: 0.5px;
     height: 100px !important;
-    
+    cursor: pointer;
+
     /*width: 90px !important;*/
 }
-.images-disenos{
+.images-dibujos{
     border-style: solid;
     border-color: #0095ad;
     border-width: 0.5px;
     height: 100px !important;
-   
+    cursor: pointer;
+
     /*width: 90px !important;*/
 }
 
@@ -159,18 +245,35 @@ label{
     left: 5px;
 }
 .alineacion-txt:hover{
-   
+
     background-color: white !important;
 }
 .alineacion-txt i{
     color: black;
 }
 
-input.validate{
+input.textos{
     height: 1.25rem !important;
-    
+
 }
 .input-field input[type=text]:focus {
     border-bottom: #0095ad !important;
     box-shadow: 0 1px 0 0 #0095ad !important;
+}
+
+span.simplecolorpicker{
+    border-style: solid !important;
+    border-color: #0095ad !important;
+    border-width: 0.5px!important; 
+    margin-left: 13px;
+    margin-top: 5px;
+}
+#tipo-letra{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+
+}
+.dropdown-content li > span{
+    color: #59595c;
+    text-align: center;
 }

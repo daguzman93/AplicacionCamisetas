@@ -108,6 +108,28 @@ class GestorBD {
         $mysqli->close();
         return $array_imagenes;
     }
+    public function getTextos() {
+        $array_textos = array();
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $mysqli->set_charset('utf8');
+        if (mysqli_connect_errno()) {
+            printf("Fallo la conexion: %s\n", mysqli_connect_error());
+            exit();
+        }
+        $query = "SELECT * FROM texto";
+
+        if ($sentencia = $mysqli->prepare($query)) {
+            $sentencia->execute();
+            $sentencia->bind_result($id, $nombre, $ruta, $precio);
+            while ($sentencia->fetch()) {
+                $texto = new Texto($id, $nombre, $ruta, $precio);
+                array_push($array_textos, $texto);
+            }
+            $sentencia->close();
+        }
+        $mysqli->close();
+        return $array_textos;
+    }
 
     /*
       Binds variables to prepared statement

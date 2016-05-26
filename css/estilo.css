@@ -77,13 +77,13 @@ a.btn-floating i{
     font-family: Hero_propia;
 
 }
-.dropdown-content li{
+/*.dropdown-content li{
     width: 133px !important;
 
 }
 .dropdown-content{
     width: 133px !important;
-}
+}*/
 @media (min-width: 1024px) {
 
     .container{
@@ -155,13 +155,16 @@ a.btn-floating i{
     }
 
 }
-.white-text{
+p.white-text{
     font-weight: 300;
     font-size: 15pt;
     text-align: center;
     line-height: 10px;
     height: 5px;
 
+}
+h5.white-text{
+    font-family: Hero_propia;
 }
 .enlace-superior i{
     color: #0095ad;
