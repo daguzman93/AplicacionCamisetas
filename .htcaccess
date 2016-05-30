@@ -1,13 +1,18 @@
-#Impedir que se pueda acceder a archivos con contenidos sensibles
-<FilesMatch "(\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|swp)|~)$">
-    Order allow,deny
-    Deny from all
-    Satisfy All
-</FilesMatch>
+RewriteEngine On
+
+RewriteBase /
 
 # Servir contenidos de tipo text/plain o text/html usando la codificación UTF-8
 AddDefaultCharset utf-8
  
 # Forzar la codificación UTF-8 en varios tipos de archivos
 AddCharset utf-8 .atom .css .js .json .rss .vtt .xml
+
+#Impedir que se pueda acceder a archivos con contenidos sensibles
+<FilesMatch "\.(htaccess|htpasswd|ini|phps|fla|psd|log|sh)$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
+
 

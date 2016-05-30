@@ -7,21 +7,89 @@ and open the template in the editor.
 <div class="container">
     <div class="row">
         <div class="col l8 offset-l2">
-            <h5 class="center-align white-text">ABRE TU PROPIA TIENDA DE VENTA DE CAMISETAS
-                INDICANDO AQUI TU EMAIL</h5>
-            <form class="col l8 offset-l2">
-                
+            <div id="contenido">
+                <h5 class="center-align white-text">ABRE TU PROPIA TIENDA DE VENTA DE CAMISETAS
+                    INDICANDO AQUI TU EMAIL</h5>
+
+                <form id="registrodisenador" method="POST" class="col l10 offset-l1">
+
                     <div class="input-field col s12">
-                        <input id="email" type="email" class="validate">
-                        <label for="email" data-error="wrong" data-success="right">Email</label>
+                        <input id="email" name="email" type="email" data-error=".errorEmail">
+                        <label for="email" >Email</label>
+                        <div class="errorEmail red-text"></div>
                     </div>
-                    <p>
-                        <input type="checkbox"  class="filled-in" id="condiciones" />
-                        <label for="condiciones" class="black-text">Acepto los términos y condiciones. <a href="#" class="white-text">Leer más.</a></label>
-                        <a class="waves-effect waves-light btn z-depth-0">Me apunto</a>
-                    </p>
-            </form>
+                    <div class="col l8"> 
+                        <p>
+                            <input type="checkbox"  class="filled-in" id="condiciones" name="condiciones" data-error=".errorCondiciones"/>
+                            <label for="condiciones" class="black-text">Acepto los términos y condiciones. <a href="#modalcondiciones" class="modal-trigger white-text">Leer más. </a></label>
+
+                        </p>
+                        <div class="input-field"> 
+                            <div class="errorCondiciones red-text"></div>
+                        </div>
+                    </div>
+                    <button  class="waves-effect waves-light btn z-depth-0 col l3 offset-l1" type="submit" >Me apunto</button >
+                </form>
+
+                <div id="modalcondiciones" class="modal modal-fixed-footer">
+                    <div class="modal-content">
+                        <h4>Términos y condiciones</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, </p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
 </div>
+<script type="text/javascript" >
+    $("#registrodisenador").validate({
+        rules: {
+            email: {
+                required: true,
+                email: true
+            },
+            condiciones: "required"
+        },
+        messages: {
+            email: {
+                required: "Email requerido",
+                email: "Introduce un email válido"
+            },
+            condiciones: "Acepta los términos y condiciones"
+        },
+        errorElement: 'div',
+        errorPlacement: function (error, element) {
+            var placement = $(element).data('error');
+            if (placement) {
+                $(placement).append(error);
+            } else {
+                error.insertAfter(element);
+            }
+        }
+    });
+    $(document).ready(function () {
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal-trigger').leanModal();
+
+        $('#registrodisenador').submit(function () {
+            $.ajax({
+                type: 'POST',
+                url: "ajax/registrodisenador.php",
+                dataType: 'html',
+                data: $(this).serialize(),
+                success: function (data) {
+                    $('#contenido').html(data);
+                }, 
+                error: function (resp, msg, ex) {
+                    alert("Error (" + resp.status + "):" + msg);
+                }
+
+            });
+        });
+    });
+
+</script>

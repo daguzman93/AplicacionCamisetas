@@ -1,0 +1,46 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28-may-2016, 19:00:26
+    Author     : Daniel
+*/
+
+.input-field label {
+    color: #000 !important;
+    font-family: Hero_propia;
+}
+.input-field input[type="email"]:focus + label {
+    color: #59595c !important;
+}
+input[type="email"]{
+    /*background-color: white !important;*/
+    border-bottom-color: #000 !important;
+}
+
+input[type="email"]:focus{
+    /*background-color: white !important;*/
+    border-bottom: 1px solid #59595c !important;
+    box-shadow: 0 1px 0 0 #59595c !important;
+}
+input[type="email"].valid{
+    /*background-color: white !important;*/
+    border-bottom: 1px solid #59595c !important;
+    box-shadow: 0 1px 0 0 #59595c !important;
+}
+.btn{
+    background-color: #59595c !important;
+    font-family: Hero_propia;
+    margin-top: 8px;
+}
+p{
+    font-family: Hero_propia;
+
+}
+
+.filled-in[type="checkbox"]:checked + label::after{
+    background-color: #59595c !important;
+    border-color: black !important;
+}

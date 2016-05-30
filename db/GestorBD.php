@@ -108,6 +108,7 @@ class GestorBD {
         $mysqli->close();
         return $array_imagenes;
     }
+
     public function getTextos() {
         $array_textos = array();
         $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -129,6 +130,22 @@ class GestorBD {
         }
         $mysqli->close();
         return $array_textos;
+    }
+
+    public function almacenarDisenador($email) {
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $mysqli->set_charset('utf8');
+        if (mysqli_connect_errno()) {
+            printf("Fallo la conexion: %s\n", mysqli_connect_error());
+            exit();
+        }
+        $query = "INSERT INTO disenador (correo) VALUES(?)";
+        if ($sentencia = $mysqli->prepare($query)) {
+            $sentencia->bind_param('s', $email);
+            $sentencia->execute();
+            $sentencia->close();
+        }
+        $mysqli->close();
     }
 
     /*
