@@ -63,7 +63,7 @@ class GestorBD {
         return $camiseta;
     }
 
-    public function getStockporCamiseta($camiseta) {
+    public function getStockporCamiseta($id) {
         $array_stock = array();
         $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
         $mysqli->set_charset('utf8');
@@ -73,7 +73,7 @@ class GestorBD {
         }
         $query = "SELECT * FROM stock WHERE camiseta=?";
         if ($sentencia = $mysqli->prepare($query)) {
-            $sentencia->bind_param('i', $camiseta);
+            $sentencia->bind_param('i', $id);
             $sentencia->execute();
             $sentencia->bind_result($camiseta, $color, $talla, $cantidad);
             while ($sentencia->fetch()) {
@@ -83,7 +83,50 @@ class GestorBD {
             $sentencia->close();
         }
         $mysqli->close();
-        return $stock;
+        return $array_stock;
+    }
+
+    public function getColoresCamiseta($id) {
+        $array_colores=array();
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $mysqli->set_charset('utf8');
+        if (mysqli_connect_errno()) {
+            printf("Fallo la conexion: %s\n", mysqli_connect_error());
+            exit();
+        }
+        $query = "SELECT color FROM stock WHERE camiseta=? GROUP BY color";
+        if ($sentencia = $mysqli->prepare($query)) {
+            $sentencia->bind_param('i', $id);
+            $sentencia->execute();
+            $sentencia->bind_result($color);
+            while ($sentencia->fetch()) {
+                array_push($array_colores, $color);
+            }
+            $sentencia->close();
+        }
+        $mysqli->close();
+        return $array_colores;
+    }
+    public function getTallasCamiseta($id) {
+        $array_tallas=array();
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $mysqli->set_charset('utf8');
+        if (mysqli_connect_errno()) {
+            printf("Fallo la conexion: %s\n", mysqli_connect_error());
+            exit();
+        }
+        $query = "SELECT talla FROM stock WHERE camiseta=? GROUP BY talla";
+        if ($sentencia = $mysqli->prepare($query)) {
+            $sentencia->bind_param('i', $id);
+            $sentencia->execute();
+            $sentencia->bind_result($talla);
+            while ($sentencia->fetch()) {
+                array_push($array_tallas, $talla);
+            }
+            $sentencia->close();
+        }
+        $mysqli->close();
+        return $array_tallas;
     }
 
     public function getImagenesDibujos() {
@@ -146,6 +189,28 @@ class GestorBD {
             $sentencia->close();
         }
         $mysqli->close();
+    }
+
+    public function existeDisenador($email) {
+        $bool = FALSE;
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $mysqli->set_charset('utf8');
+        if (mysqli_connect_errno()) {
+            printf("Fallo la conexion: %s\n", mysqli_connect_error());
+            exit();
+        }
+        $query = "SELECT * FROM disenador WHERE correo=?";
+        if ($sentencia = $mysqli->prepare($query)) {
+            $sentencia->bind_param('s', $email);
+            $sentencia->execute();
+            $sentencia->store_result();
+            if ($sentencia->num_rows > 0) {
+                $bool = TRUE;
+            }
+            $sentencia->close();
+        }
+        $mysqli->close();
+        return $bool;
     }
 
     /*

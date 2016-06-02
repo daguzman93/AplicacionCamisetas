@@ -10,8 +10,12 @@ if (isset($_POST['email'])) {
     $email = $_POST['email'];
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $gdb = new GestorBD();
-        $gdb->almacenarDisenador($email);
-        echo '<h6 class="center-align white-text">Tu correo' . $email . 'ha sido almacenado,'
-        . 'en breve nos pondremos en contacto contigo</h6>';
+        if (!$gdb->existeDisenador($email)) {
+            $gdb->almacenarDisenador($email);
+            echo '<h5 class="center-align white-text">Tu correo ' . $email . ' ha sido almacenado,'
+            . 'en breve nos pondremos en contacto contigo</h6>';
+        }else{
+            echo '<h5 class="center-align white-text">El correo introducido ya estaba registrado anteriormente, en breve nos pondremos en contacto contigo.</h6>';
+        }
     }
 }

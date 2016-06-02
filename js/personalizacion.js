@@ -122,11 +122,12 @@ window.onload = function () {
 
     $('#sube-imagen').click(function () {
         var content = '<div class="col l12"><div class="col l12"><p class="letra-pequena">Sube tu diseño, ya sea una fotografía, un archivo JPG o un archivo PNG sin fondo.</p></div></div>';
-        content += '<div class="col l12"><div class="col l8"><form action="#"><div class="file-field input-field"><div class="waves-effect waves-light btn z-depth-0"><span>Examinar</span><input type="file" multiple></div><div class="file-path-wrapper"><input class="file-path validate" type="text" ></div></div><p><input type="checkbox" class="filled-in" id="filled-in-box"/><label for="filled-in-box">Acepto las condiciones de uso. Leer más.</label></p></form></div><div class="col l4"><p>Peso máximo 25MB</p></div></div>';
-
+        content += '<div class="col l12"><div class="col l8"><form action="#"><div class="file-field input-field"><div class="waves-effect waves-light btn z-depth-0"><span>Examinar</span><input type="file" multiple></div><div class="file-path-wrapper"><input class="file-path validate" type="text" ></div></div><p><input type="checkbox" class="filled-in" id="filled-in-box"/><label for="filled-in-box">Acepto las condiciones de uso. <a href="#modalcondiciones" class="modal-trigger">Leer más. </a></label></p> </form></div><div class="col l4"><p>Peso máximo 25MB</p></div></div>';
+        content += '<div id="modalcondiciones" class="modal modal-fixed-footer"><div class="modal-content"><h4>Términos y condiciones</h4><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, </p></div><div class="modal-footer"><a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a></div></div>';
         $('#area-modificable').html(content);
         $('.boton-active').attr('class', 'waves-effect waves-light btn z-depth-0');
         $(this).attr('class', 'waves-effect waves-light btn z-depth-0 boton-active');
+        $('.modal-trigger').leanModal();
     });
     $('#escribe-texto').click(function () {
 
@@ -170,6 +171,7 @@ window.onload = function () {
                 alert("Error (" + resp.status + "):" + msg);
             }
         });
+        
         $('.boton-active').attr('class', 'waves-effect waves-light btn z-depth-0');
         $(this).attr('class', 'waves-effect waves-light btn z-depth-0 boton-active');
     });
@@ -188,6 +190,25 @@ window.onload = function () {
                 alert("Error (" + resp.status + "):" + msg);
             }
         });
+        $.ajax("ajax/CargarColoresCamiseta.php?id=" + this.id, {
+            dataType: 'html',
+            success: function (data) {
+                $('#colores-camiseta').html(data);
+            },
+            error: function (resp, msg, ex) {
+                alert("Error (" + resp.status + "):" + msg);
+            }
+        });
+        $.ajax("ajax/CargarTallasCamiseta.php?id=" + this.id, {
+            dataType: 'html',
+            success: function (data) {
+                $('#tallas-camiseta').html(data);
+            },
+            error: function (resp, msg, ex) {
+                alert("Error (" + resp.status + "):" + msg);
+            }
+        });
+
     });
     $(document).on('click', '.images-dibujos', function () {
         canvas.remove(textoini);

@@ -11,85 +11,28 @@
  *
  * @author Daniel
  */
-class CamisetaDefinida extends Camiseta{
-    
-    private $diseño;
+class CamisetaDefinida {
+
+    private $id, $diseño, $color;
+
     //put your code here
-    
-    function __construct($id,$nombre, $stock, $talla, $color, $genero, $delantera, $trasera, $precio,$diseño) {
-        parent::__construct($id,$nombre, $stock, $talla, $color, $genero, $delantera, $trasera, $precio);
+
+    function __construct($id, $diseño, $color) {
+        $this->id = $id;
         $this->diseño = $diseño;
+        $this->color = $color;
     }
+
     public function getColor() {
-        return parent::getColor();
-    }
-
-    public function getDelantera() {
-        return parent::getDelantera();
-    }
-
-    public function getGenero() {
-        return parent::getGenero();
+        return $this->color;
     }
 
     public function getId() {
-        return parent::getId();
-    }
-
-    public function getNombre() {
-        return parent::getNombre();
-    }
-
-    public function getPrecio() {
-        return parent::getPrecio();
-    }
-
-    public function getStock() {
-        return parent::getStock();
-    }
-
-    public function getTalla() {
-        return parent::getTalla();
-    }
-
-    public function getTrasera() {
-        return parent::getTrasera();
+        return $this->id;
     }
 
     public function setColor($color) {
-        parent::setColor($color);
-    }
-
-    public function setDelantera($delantera) {
-        parent::setDelantera($delantera);
-    }
-
-    public function setGenero($genero) {
-        parent::setGenero($genero);
-    }
-
-    public function setId($id) {
-        parent::setId($id);
-    }
-
-    public function setNombre($nombre) {
-        parent::setNombre($nombre);
-    }
-
-    public function setPrecio($precio) {
-        parent::setPrecio($precio);
-    }
-
-    public function setStock($stock) {
-        parent::setStock($stock);
-    }
-
-    public function setTalla($talla) {
-        parent::setTalla($talla);
-    }
-
-    public function setTrasera($trasera) {
-        parent::setTrasera($trasera);
+        $this->color = $color;
     }
 
     function getDiseño() {

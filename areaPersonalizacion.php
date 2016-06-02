@@ -1,10 +1,10 @@
 <?php
+session_start();
 include_once $_SERVER["DOCUMENT_ROOT"] . '/AplicacionCamisetas/class/Camiseta.php';
-include_once $_SERVER["DOCUMENT_ROOT"] . '/AplicacionCamisetas/db/GestorBD.php';
-include_once $_SERVER["DOCUMENT_ROOT"] . '/AplicacionCamisetas/class/Stock.php';
-$gdb = new GestorBD();
-$lista = $gdb->getCamisetasporGenero("Hombre");
-$camiseta = $lista[0];
+$lista = unserialize($_SESSION['modelos_hombre']);
+$camiseta = unserialize($_SESSION['camiseta']);
+$array_colores = $_SESSION['colores'];
+$array_tallas = $_SESSION['tallas'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -111,58 +111,29 @@ $camiseta = $lista[0];
 
                                 </div>
                                 <div class="col l12">
-                                    <div class="col l1">
-                                        <a class="color btn-floating z-depth-0 white"></a>
-                                    </div>
-                                    <div class="col l1">
-                                        <a class=" color btn-floating z-depth-0 black"></a>
-                                    </div>
-                                    <div class="col l1">
-                                        <a class="color btn-floating z-depth-0 red"></a>
-                                    </div>
-                                    <div class="col l1">
-                                        <a class="color btn-floating z-depth-0 blue"></a>
-                                    </div>
-                                    <div class="col l1">
-                                        <a class="color btn-floating z-depth-0 green"></a>
-                                    </div>
-                                    <div class="col l1">
-                                        <a class="color btn-floating z-depth-0 orange"></a>
-                                    </div>
-                                    <div class="col l1">
-                                        <a class="color btn-floating z-depth-0 grey"></a>
-                                    </div>
-                                    <div class="col l1">
-                                        <a class="color btn-floating z-depth-0 yellow"></a>
+                                    <?php for ($i = 0; $i < count($array_colores); $i++): ?>
+                                        <div class="col l1">
+                                            <a class="color btn-floating z-depth-0 <?= $array_colores[$i] ?>"></a>
+                                        </div>
+                                    <?php endfor; ?>
 
-                                    </div>
 
                                 </div>
                             </div>
-                            <div class="col l12">
+                            <div id="tallas-camiseta">
                                 <div class="col l12">
-                                    <p class="letra-pequena">Elige tu talla</p>
-                                </div>
+                                    <div class="col l12">
+                                        <p class="letra-pequena">Elige tu talla</p>
+                                    </div>
 
-                            </div>
-                            <div class="col l12">
-                                <div class="col l1">
-                                    <a class="color btn-floating z-depth-0 white">S</a>
                                 </div>
-                                <div class="col l1">
-                                    <a class=" color btn-floating z-depth-0 white">M</a>
-                                </div>
-                                <div class="col l1">
-                                    <a class="color btn-floating z-depth-0 white">L</a>
-                                </div>
-                                <div class="col l1">
-                                    <a class="color btn-floating z-depth-0 white">XL</a>
-                                </div>
-                                <div class="col l1">
-                                    <a class="color btn-floating z-depth-0 white">XXL</a>
-                                </div>
-                                <div class="col l1">
-                                    <a class="color btn-floating z-depth-0 white">3XL</a>
+                                <div class="col l12">
+                                    <?php for ($i = 0; $i < count($array_tallas); $i++): ?>
+                                        <div class="col l1">
+                                            <a class="color btn-floating z-depth-0 white"><?= $array_tallas[$i] ?></a>
+                                        </div>
+                                    <?php endfor; ?>
+
                                 </div>
                             </div>
                             <div class="col l12">
