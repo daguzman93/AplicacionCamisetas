@@ -114,7 +114,8 @@ and open the template in the editor.
     border-color: #0095ad;
     border-style: solid;
     border-width: 0.5px;
-    height: 100px !important;
+    height: 100px;
+    width: 90px;
     background-size: cover;
     /*width: 80px !important;*/
 }
@@ -124,7 +125,8 @@ and open the template in the editor.
     border-color: #0095ad;
     border-style: solid;
     border-width: 0.5px;
-    height: 100px !important;
+    height: 100px;
+    width: 90px;
     background-size: cover;
     /*width: 80px !important;*/
 }
@@ -140,19 +142,18 @@ and open the template in the editor.
     border-style: solid;
     border-color: #0095ad;
     border-width: 0.5px;
-    height: 100px !important;
-    cursor: pointer;
+    height: 100px;
+    width: 90px;
+    overflow:hidden;
 
-    /*width: 90px !important;*/
 }
 .images-dibujos{
     border-style: solid;
     border-color: #0095ad;
     border-width: 0.5px;
-    height: 100px !important;
+    height: 80px ;
+    width: 90px;
     cursor: pointer;
-
-    /*width: 90px !important;*/
 }
 
 main a{

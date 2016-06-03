@@ -1,10 +1,40 @@
 <?php
-session_start();
 include_once $_SERVER["DOCUMENT_ROOT"] . '/AplicacionCamisetas/class/Camiseta.php';
-$lista = unserialize($_SESSION['modelos_hombre']);
-$camiseta = unserialize($_SESSION['camiseta']);
-$array_colores = $_SESSION['colores'];
-$array_tallas = $_SESSION['tallas'];
+include_once $_SERVER["DOCUMENT_ROOT"] . '/AplicacionCamisetas/db/GestorBD.php';
+include_once $_SERVER["DOCUMENT_ROOT"] . '/AplicacionCamisetas/class/Stock.php';
+$gdb = new GestorBD();
+$lista = $gdb->getCamisetasporGenero("Hombre");
+if (isset($_GET["idcd"])) {
+    
+} elseif (isset($_GET["idc"])) {
+    $camiseta = $gdb->getCamisetaporId($_GET["idc"]);
+    $array_colores = $gdb->getColoresCamiseta($camiseta->getId());
+    $array_tallas = $gdb->getTallasCamiseta($camiseta->getId());
+    usort($array_tallas, "cmp");
+} else {
+    $camiseta = $lista[0];
+    $array_colores = $gdb->getColoresCamiseta($camiseta->getId());
+    $array_tallas = $gdb->getTallasCamiseta($camiseta->getId());
+    usort($array_tallas, "cmp");
+}
+
+function cmp($a, $b) {
+    $sizes = array(
+        "XXS" => 0,
+        "XS" => 1,
+        "S" => 2,
+        "M" => 3,
+        "L" => 4,
+        "XL" => 5,
+        "XXL" => 6
+    );
+    $asize = $sizes[$a];
+    $bsize = $sizes[$b];
+    if ($asize == $bsize) {
+        return 0;
+    }
+    return ($asize > $bsize) ? 1 : -1;
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,7 +55,7 @@ $array_tallas = $_SESSION['tallas'];
         <script type="text/javascript" src="js/principal.js"></script>
         <script type="text/javascript" src="js/personalizacion.js"></script>
         <script type="text/javascript" src="js/jquery.simplecolorpicker.js"></script>
-
+        <script defer  src="js/customiseControls.js"></script>
     </head>
     <body>
         <header>
@@ -40,9 +70,9 @@ $array_tallas = $_SESSION['tallas'];
                         <p class="center-align" style="color: #0095ad">
                             Tu lo diseñas
                         </p>
-                        <img id="delantera" class="responsive-img" src="img/fotosMasdeMil/<?= $camiseta->getDelantera() ?>">
+                        <img id="delantera" src="img/fotosMasdeMil/<?= $camiseta->getDelantera() ?>">
                         <p class="center-align letra-pequena" style="margin-top: 1px;">delantera</p>
-                        <img  id="trasera" class="responsive-img" src="img/fotosMasdeMil/<?= $camiseta->getTrasera() ?>">
+                        <img  id="trasera"  src="img/fotosMasdeMil/<?= $camiseta->getTrasera() ?>">
                         <p class="center-align letra-pequena" style="margin-top: 1px;">trasera</p>
                         <a id="previsualizar" class="waves-effect waves-light btn z-depth-0">Previsualizar</a>
 
@@ -97,8 +127,8 @@ $array_tallas = $_SESSION['tallas'];
 
                                 <div id="imagenes-camisetas">
                                     <?php for ($i = 0; $i < count($lista); $i++): ?>
-                                        <div class="col l2">
-                                            <img id="<?= $lista[$i]->getID() ?>" class="responsive-img images-genero"  src="img/fotosMasdeMil/<?= $lista[$i]->getDelantera() ?>">
+                                        <div class="col l2 ">
+                                            <a href="areaPersonalizacion.php?idc=<?= $lista[$i]->getID() ?>"><img id="<?= $lista[$i]->getID() ?>" class="images-genero"  src="img/fotosMasdeMil/<?= $lista[$i]->getDelantera() ?>"></a>
                                         </div>
                                     <?php endfor; ?>
                                 </div>
