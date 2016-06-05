@@ -70,9 +70,9 @@ function cmp($a, $b) {
                         <p class="center-align" style="color: #0095ad">
                             Tu lo diseñas
                         </p>
-                        <img id="delantera" src="img/fotosMasdeMil/<?= $camiseta->getDelantera() ?>">
+                        <img id="delantera" class="active" src="img/fotosMasdeMil/<?= $camiseta->getDelantera() ?>">
                         <p class="center-align letra-pequena" style="margin-top: 1px;">delantera</p>
-                        <img  id="trasera"  src="img/fotosMasdeMil/<?= $camiseta->getTrasera() ?>">
+                        <img  id="trasera" class="" src="img/fotosMasdeMil/<?= $camiseta->getTrasera() ?>">
                         <p class="center-align letra-pequena" style="margin-top: 1px;">trasera</p>
                         <a id="previsualizar" class="waves-effect waves-light btn z-depth-0">Previsualizar</a>
 
@@ -83,7 +83,7 @@ function cmp($a, $b) {
 
                         <div id="drawingArea">					
                             <canvas id="tcanvas" ></canvas>
-
+                            
                         </div>
                     </div>
                     <div class="col l6">

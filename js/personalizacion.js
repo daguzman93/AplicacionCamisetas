@@ -5,7 +5,14 @@
  */
 window.onload = function () {
     var divcolor;
-    var canvas = this.__canvas = new fabric.Canvas('tcanvas');
+    var delantera;
+    var trasera;
+    var canvas = this.__canvas = new fabric.Canvas('tcanvas', {
+        hoverCursor: 'pointer',
+        selection: true
+
+    });
+
     canvas.setHeight(250);
     canvas.setWidth(175);
     var textoini = new fabric.Text("Coloca\ntu diseño,\nfoto o\ntexto", {
@@ -19,25 +26,73 @@ window.onload = function () {
     });
     canvas.add(textoini);
     canvas.centerObject(textoini);
+    fabric.Canvas.prototype.customiseControls({
+        tl: {
+            action: 'rotate',
+            cursor: 'pointer'
+        },
+        tr: {
+            action: 'remove',
+            cursor: 'pointer'
+        },
+        bl: {
+            action: function (e) {
+
+            },
+            cursor: 'pointer'
+        },
+        br: {
+            action: 'scale',
+            cursor: 'pointer'
+        }
+    });
+
     document.getElementById('delantera').onclick = function () {
-        document.getElementById('area-camiseta').src = this.src;
-        $('#drawingArea').css({
-            position: 'absolute',
-            top: 110,
-            marginLeft: 160
-        });
-        canvas.setWidth(175);
+        if (this.className !== 'active') {
+            document.getElementById('area-camiseta').src = this.src;
+            $('#delantera').attr('class', 'active');
+            $('#trasera').attr('class', '');
+            $('#drawingArea').css({
+                position: 'absolute',
+                top: 110,
+                marginLeft: 160
+            });
+            trasera = JSON.stringify(canvas);
+            canvas.clear();
+            try {
+                if (delantera != undefined) {
+                    canvas.loadFromJSON(JSON.parse(delantera), canvas.renderAll.bind(canvas));
+                }
+
+            } catch (e) {
+                alert(e);
+            }
+        }
     };
     document.getElementById('trasera').onclick = function () {
-        document.getElementById('area-camiseta').src = this.src;
-        $('#drawingArea').css({
-            position: 'absolute',
-            top: 70,
-            marginLeft: 155
+        if (this.className !== 'active') {
+            document.getElementById('area-camiseta').src = this.src;
+            $('#trasera').attr('class', 'active');
+            $('#delantera').attr('class', '');
+            $('#drawingArea').css({
+                position: 'absolute',
+                top: 70,
+                marginLeft: 155
+            });
+            delantera = JSON.stringify(canvas);
+            canvas.clear();
+            try {
+                if (trasera != undefined) {
+                    canvas.loadFromJSON(JSON.parse(trasera), canvas.renderAll.bind(canvas));
+                }
 
-        });
-        canvas.setWidth(170);
+            } catch (e) {
+                alert(e);
+            }
+        }
+
     };
+
     $(document).on('click', '#Hombre', function (event) {
         event.preventDefault();
         $.ajax("ajax/MostrarCamisetasPorGenero.php?genero=Hombre", {
@@ -163,47 +218,43 @@ window.onload = function () {
         $(this).attr('class', 'waves-effect waves-light btn z-depth-0 boton-active');
     });
     $(document).on('click', '.images-dibujos', function () {
-        canvas.remove(canvas.item(0));
+        canvas.clear();
         fabric.Image.fromURL(this.src, function (oImg) {
             oImg.set({
-                scaleX:(canvas.width * 0.90) / oImg.width,
-                scaleY: (canvas.width * 0.90)  / oImg.width,
-                hasRotatingPoint: false
+                scaleX: (canvas.width * 0.80) / oImg.width,
+                scaleY: (canvas.width * 0.80) / oImg.width,
+                hasRotatingPoint: false,
+                lockScalingFlip: true
             });
-            oImg.customiseCornerIcons({
-                settings: {
-                    borderColor: '#0095ad',
-                    cornerSize: 30,
-                    cornerShape: 'circle',
-                    cornerPadding: 10
-                },
-                tl: {
-                    action: 'rotate',
-                    icon: 'img/rotate.png',
-                    cursor: 'pointer'
-
-                },
-                tr: {
-                    action: 'remove',
-                    icon: 'img/remove.png'
-                },
-                bl: {
-                    icon: 'img/zoom.png'
-
-                },
-                br: {
-                    action: 'scale',
-                    icon: 'img/resize.png'
-
-                }
-            });
-            oImg.setControlsVisibility({'mt': false, 'mb': false, 'mr': false, 'ml': false});
             canvas.add(oImg);
             canvas.centerObject(oImg);
             canvas.renderAll();
         });
     });
-    canvas.observe('object:moving', function (e) {
+    canvas.observe("object:scaling", function (e) {
+        var shape = e.target;
+        var minWidth = (canvas.width * 0.30);
+        var maxWidth = (canvas.width * 0.80);
+        var actualWidth = shape.scaleX * shape.width;
+        if (!isNaN(maxWidth) && actualWidth >= maxWidth) {
+
+            shape.set({scaleX: maxWidth / shape.width, scaleY: maxWidth / shape.width});
+        }
+
+        if (!isNaN(minWidth) && actualWidth <= minWidth) {
+            shape.set({scaleX: minWidth / shape.width, scaleY: minWidth / shape.width});
+        }
+        LimiteBordes(e);
+
+    });
+    canvas.on({
+        'object:selected': Controles,
+        'object:moving': LimiteBordes,
+        'object:rotating': LimiteBordes
+
+    });
+
+    function LimiteBordes(e) {
         var obj = e.target;
         if (obj.getHeight() > obj.canvas.height || obj.getWidth() > obj.canvas.width) {
             obj.setScaleY(obj.originalState.scaleY);
@@ -220,14 +271,35 @@ window.onload = function () {
             obj.top = Math.min(obj.top, obj.canvas.height - obj.getBoundingRect().height + obj.top - obj.getBoundingRect().top - obj.cornerSize / 2);
             obj.left = Math.min(obj.left, obj.canvas.width - obj.getBoundingRect().width + obj.left - obj.getBoundingRect().left - obj.cornerSize / 2);
         }
-    });
-    canvas.observe("object:scaling", function (e) {
-        var shape = e.target;
-        var maxWidth = (canvas.width * 0.80);
-        var actualWidth = shape.scaleX * shape.width;
-        if (!isNaN(maxWidth) && actualWidth >= maxWidth) {
-            // dividing maxWidth by the shape.width gives us our 'max scale' 
-            shape.set({scaleX: maxWidth / shape.width});
-        }
-    });
+    }
+    function Controles(e) {
+        var selectedObject = e.target;
+        selectedObject.hasRotatingPoint = false;
+        selectedObject.customiseCornerIcons({
+            settings: {
+                borderColor: '#0095ad',
+                cornerSize: 30,
+                cornerShape: 'circle',
+                cornerPadding: 10
+            },
+            tl: {
+                icon: 'img/rotate.png'
+
+            },
+            tr: {
+                icon: 'img/remove.png'
+            },
+            bl: {
+                icon: 'img/zoom.png'
+
+            },
+            br: {
+                icon: 'img/resize.png'
+
+            }
+        });
+        selectedObject.setControlsVisibility({'mt': false, 'mb': false, 'mr': false, 'ml': false});
+    }
+
+
 };
