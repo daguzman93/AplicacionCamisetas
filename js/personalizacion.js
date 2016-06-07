@@ -36,8 +36,15 @@ window.onload = function () {
             cursor: 'pointer'
         },
         bl: {
-            action: function (e) {
-
+            action: function (e, target) {
+                var elem = document.createElement("img");
+                elem.src = target.getSrc();
+                elem.width = 370;
+                var div = document.createElement('div');
+                div.className = 'content';
+                div.appendChild(elem);
+                document.getElementById('modalimagen').replaceChild(div, document.getElementById('modalimagen').firstChild);
+                $('#modalimagen').openModal();
             },
             cursor: 'pointer'
         },
@@ -166,14 +173,80 @@ window.onload = function () {
         $(this).attr('class', 'waves-effect waves-light btn z-depth-0 boton-active');
     });
     $('#sube-imagen').click(function () {
-        var content = '<div class="col l12"><div class="col l12"><p class="letra-pequena">Sube tu diseño, ya sea una fotografía, un archivo JPG o un archivo PNG sin fondo.</p></div></div>';
-        content += '<div class="col l12"><div class="col l8"><form action="#"><div class="file-field input-field"><div class="waves-effect waves-light btn z-depth-0"><span>Examinar</span><input type="file" multiple></div><div class="file-path-wrapper"><input class="file-path validate" type="text" ></div></div><p><input type="checkbox" class="filled-in" id="filled-in-box"/><label for="filled-in-box">Acepto las condiciones de uso. <a href="#modalcondiciones" class="modal-trigger">Leer más. </a></label></p> </form></div><div class="col l4"><p>Peso máximo 25MB</p></div></div>';
+        var content = '<div class="col l12"><div class="col l12"><p class="letra-pequena">Sube tu diseño, un archivo JPG o un archivo PNG sin fondo (max 25MB).</p></div></div>';
+        content += '<div class="col l12"><div class="col l10 "><form id="formsubirimg" enctype="multipart/form-data" method="POST" action="#"><div class="row"><div class="file-field input-field col l12"><div class="waves-effect waves-light btn z-depth-0"><span>Examinar</span><input id="img" name="archivo" type="file" data-error=".errorArchivo"></div><div class="file-path-wrapper"><input class="file-path validate" type="text"></div></div><div class="errorArchivo red-text letra-pequena"></div></div>\
+ <div class="row"><div class="col l8"><p><input type="checkbox" class="filled-in" id="condiciones" data-error=".errorCondiciones" name="condiciones"/><label for="condiciones" >Acepto las condiciones de uso. <a href="#modalcondiciones" class="modal-trigger">Leer más. </a></label><div class="input-field"><div class="errorCondiciones red-text letra-pequena"></div></div></p></div><div class="col l4"><button id="btn-subir" class="btn waves-effect waves-light z-depth-0" type="submit">Subir imagen</button></div></div></form></div></div>';
         content += '<div id="modalcondiciones" class="modal modal-fixed-footer"><div class="modal-content"><h4>Términos y condiciones</h4><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, </p></div><div class="modal-footer"><a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a></div></div>';
         $('#colores-camiseta').html(divcolor);
         $('#area-modificable').html(content);
         $('.boton-active').attr('class', 'waves-effect waves-light btn z-depth-0');
         $(this).attr('class', 'waves-effect waves-light btn z-depth-0 boton-active');
         $('.modal-trigger').leanModal();
+        $.validator.addMethod('filesize', function (value, element, param) {
+            return this.optional(element) || (element.files[0].size <= param);
+        });
+        $("#formsubirimg").validate({
+            rules: {
+                archivo: {
+                    required: true,
+                    extension: "png|jpg",
+                    filesize: 26214400
+                },
+                condiciones: "required"
+            },
+            messages: {
+                archivo: {
+                    required: "No has introducido ningun fichero",
+                    extension: "La imagen debe tener extensión jpg o png",
+                    filesize: "La imagen no debe de pesar mas de 25MB"
+
+                },
+                condiciones: "Acepta los términos y condiciones"
+            },
+            errorElement: 'div',
+            errorPlacement: function (error, element) {
+                var placement = $(element).data('error');
+                if (placement) {
+                    $(placement).append(error);
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+        });
+        $('#btn-subir').on('click', function (e) {
+            if ($("#formsubirimg").valid()) {
+                e.preventDefault();
+                var form_data = new FormData($('#formsubirimg')[0]);
+                var file = $("#img")[0].files[0];
+                $.ajax({
+                    url: 'ajax/subidaImagen.php',
+                    dataType: 'text',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: form_data,
+                    type: 'POST',
+                    success: function (data) {
+                        $('#formsubirimg')[0].reset();
+                        canvas.clear();
+                        fabric.Image.fromURL('upload/' + data, function (oImg) {
+                            oImg.set({
+                                scaleX: (canvas.width * 0.80) / oImg.width,
+                                scaleY: (canvas.width * 0.80) / oImg.width,
+                                hasRotatingPoint: false,
+                                lockScalingFlip: true
+                            });
+                            canvas.add(oImg);
+                            canvas.centerObject(oImg);
+                            canvas.renderAll();
+                        });
+                    }
+                });
+            }
+
+        });
+
+
     });
     $('#escribe-texto').click(function () {
 
@@ -198,7 +271,16 @@ window.onload = function () {
         });
         $('.boton-active').attr('class', 'waves-effect waves-light btn z-depth-0');
         $(this).attr('class', 'waves-effect waves-light btn z-depth-0 boton-active');
+        
+        $('#check-texto1').on('click',function(e){
+            e.preventDefault();
+            alert('hola');
+            
+        });
     });
+    
+    
+    
     $('#elige-producto').click(function () {
         $.ajax("ajax/MostrarModelosHombre.php", {
             dataType: 'json',
@@ -303,3 +385,5 @@ window.onload = function () {
 
 
 };
+
+

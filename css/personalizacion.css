@@ -151,7 +151,8 @@ and open the template in the editor.
     border-style: solid;
     border-color: #0095ad;
     border-width: 0.5px;
-    height: 80px ;
+    overflow: hidden;
+    height: 80px;
     width: 90px;
     cursor: pointer;
 }
@@ -257,10 +258,7 @@ input.textos{
     height: 1.25rem !important;
 
 }
-.input-field input[type=text]:focus {
-    border-bottom: #0095ad !important;
-    box-shadow: 0 1px 0 0 #0095ad !important;
-}
+
 
 span.simplecolorpicker{
     border-style: solid !important;
@@ -277,4 +275,13 @@ span.simplecolorpicker{
 .dropdown-content li > span{
     color: #59595c;
     text-align: center;
+}
+#btn-subir{
+    position: relative;
+    top: 18px;
+}
+input[type="text"]{
+    /*background-color: white !important;*/
+    border-bottom: 1px solid #0095ad !important;
+    box-shadow: 0 1px 0 0 #0095ad !important;
 }

@@ -52,10 +52,13 @@ function cmp($a, $b) {
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.5.0/fabric.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/additional-methods.js"></script>
         <script type="text/javascript" src="js/principal.js"></script>
         <script type="text/javascript" src="js/personalizacion.js"></script>
         <script type="text/javascript" src="js/jquery.simplecolorpicker.js"></script>
         <script defer  src="js/customiseControls.js"></script>
+
     </head>
     <body>
         <header>
@@ -83,7 +86,13 @@ function cmp($a, $b) {
 
                         <div id="drawingArea">					
                             <canvas id="tcanvas" ></canvas>
-                            
+
+                        </div>
+                    </div>
+                    <div id="modalimagen" class="modal modal-fixed-footer">
+
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cerrar</a>
                         </div>
                     </div>
                     <div class="col l6">
