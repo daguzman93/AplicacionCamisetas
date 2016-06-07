@@ -85,7 +85,7 @@ and open the template in the editor.
             dataType: 'html',
             data: $('#registrodisenador').serialize(),
             success: function (data) {
-                alert(data);
+                $('#contenido').html(data);
             },
             error: function (resp, msg, ex) {
                 alert("Error (" + resp.status + "):" + msg);
