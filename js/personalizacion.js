@@ -7,25 +7,6 @@ window.onload = function () {
     var divcolor;
     var delantera;
     var trasera;
-    var canvas = this.__canvas = new fabric.Canvas('tcanvas', {
-        hoverCursor: 'pointer',
-        selection: true
-
-    });
-
-    canvas.setHeight(250);
-    canvas.setWidth(175);
-    var textoini = new fabric.Text("Coloca\ntu diseño,\nfoto o\ntexto", {
-        fontFamily: ' Hero_propia',
-        textAlign: 'center',
-        fontSize: 25,
-        fill: '#0095ad',
-        hasControls: false,
-        hasBorders: false,
-        selectable: false
-    });
-    canvas.add(textoini);
-    canvas.centerObject(textoini);
     fabric.Canvas.prototype.customiseControls({
         tl: {
             action: 'rotate',
@@ -53,6 +34,43 @@ window.onload = function () {
             cursor: 'pointer'
         }
     });
+    fabric.Texto = fabric.util.createClass(fabric.Text, {
+        type: 'texto',
+        initialize: function (element, options) {
+            this.callSuper('initialize', element, options);
+            options && this.set('name', options.name);
+        },
+        toObject: function () {
+            return fabric.util.object.extend(this.callSuper('toObject'), {name: this.name});
+        },
+        getName: function () {
+            return this.name;
+        },
+        setName: function (nombre) {
+            this.name = nombre;
+        }
+    });
+    var canvas = this.__canvas = new fabric.Canvas('tcanvas', {
+        hoverCursor: 'pointer',
+        selection: true
+
+    });
+
+    canvas.setHeight(250);
+    canvas.setWidth(175);
+    var textoini = new fabric.Texto("Coloca\ntu diseño,\nfoto o\ntexto", {
+        fontFamily: ' Hero_propia',
+        textAlign: 'center',
+        fontSize: 25,
+        fill: '#0095ad',
+        hasControls: false,
+        hasBorders: false,
+        selectable: false,
+        name: 'textoini'
+    });
+    canvas.add(textoini);
+    canvas.centerObject(textoini);
+
 
     document.getElementById('delantera').onclick = function () {
         if (this.className !== 'active') {
@@ -237,7 +255,7 @@ window.onload = function () {
                                 lockScalingFlip: true
                             });
                             canvas.add(oImg);
-                            canvas.centerObject(oImg);
+//                            canvas.centerObject(oImg);
                             canvas.renderAll();
                         });
                     }
@@ -255,32 +273,150 @@ window.onload = function () {
             success: function (data) {
                 var content = '<div class="col l12"><div class="col l12"><p class="letra-pequena">Añade el texto que quieras, al tamaño que quieras y donde desees.</p></div></div>';
                 content += '<div class="col l12"><div class="col l1"><p>Texto</p></div><div class="col l1 offset-l3"><p>Color</p></div><div class="col l1 "><p>OK</p></div><div class="col l2 offset-l1"><p>Justificación</p></div><div class="col l1"><a id="alineacion-izq" class="btn z-depth-0 alineacion-txt"><i class="material-icons">format_align_left</i></a></div><div class="col l1"><a id="alineacion-central" class="btn z-depth-0 alineacion-txt"><i class="material-icons">format_align_center</i></a></div><div class="col l1"><a id="alineacion-drcha" class="btn z-depth-0 alineacion-txt"><i class="material-icons">format_align_right</i></a></div></div>\
- <div class="col l12"><form action="#"><div class="row"><div class="input-field col l4"><input id="texto1" type="text" class="validate textos"></div><div class="col l1"><select id="colortexto1" name="colorpicker"><option value="#ffffff">White</option><option value="#7bd148">Green</option><option value="#5484ed">Bold blue</option><option value="#a4bdfc">Blue</option><option value="#46d6db">Turquoise</option><option value="#7ae7bf">Light green</option><option value="#51b749">Bold green</option><option value="#fbd75b">Yellow</option><option value="#ffb878">Orange</option><option value="#ff887c">Red</option><option value="#dc2127">Bold red</option><option value="#dbadff">Purple</option><option value="#e1e1e1">Gray</option></select></div><div class="col l1"><a id="check-texto1" class="waves-effect waves-light btn z-depth-0" href="#"><i class="material-icons">check</i></a></div></div>\
-<div class="row"><div class="input-field col l4"><input id="texto2" type="text" class="validate textos"></div><div class="col l1"><select id="colortexto2" name="colorpicker"><option value="#ffffff">White</option><option value="#7bd148">Green</option><option value="#5484ed">Bold blue</option><option value="#a4bdfc">Blue</option><option value="#46d6db">Turquoise</option><option value="#7ae7bf">Light green</option><option value="#51b749">Bold green</option><option value="#fbd75b">Yellow</option><option value="#ffb878">Orange</option><option value="#ff887c">Red</option><option value="#dc2127">Bold red</option><option value="#dbadff">Purple</option><option value="#e1e1e1">Gray</option></select></div><div class="col l1"><a id="check-texto2" class="waves-effect waves-light btn z-depth-0" href="#"><i class="material-icons">check</i></a></div>';
-                content += data + '</div><div class="row"><div class="input-field col l4"><input id="texto3" type="text" class="validate textos"></div><div class="col l1"><select id="colortexto3" name="colorpicker"><option value="#ffffff">White</option><option value="#7bd148">Green</option><option value="#5484ed">Bold blue</option><option value="#a4bdfc">Blue</option><option value="#46d6db">Turquoise</option><option value="#7ae7bf">Light green</option><option value="#51b749">Bold green</option><option value="#fbd75b">Yellow</option><option value="#ffb878">Orange</option><option value="#ff887c">Red</option><option value="#dc2127">Bold red</option><option value="#dbadff">Purple</option><option value="#e1e1e1">Gray</option></select></div><div class="col l1"><a id="check-texto3" class="waves-effect waves-light btn z-depth-0" href="#"><i class="material-icons">check</i></a></div></div>\
-<div class="row"><div class="input-field col l4"><input id="texto4" type="text" class="validate textos"></div><div class="col l1"><select id="colortexto4" name="colorpicker"><option value="#ffffff">White</option><option value="#7bd148">Green</option><option value="#5484ed">Bold blue</option><option value="#a4bdfc">Blue</option><option value="#46d6db">Turquoise</option><option value="#7ae7bf">Light green</option><option value="#51b749">Bold green</option><option value="#fbd75b">Yellow</option><option value="#ffb878">Orange</option><option value="#ff887c">Red</option><option value="#dc2127">Bold red</option><option value="#dbadff">Purple</option><option value="#e1e1e1">Gray</option></select></div><div class="col l1"><a id="check-texto4" class="waves-effect waves-light btn z-depth-0" href="#"><i class="material-icons">check</i></a></div></div></form></div></div>';
+ <div class="col l12"><form action="#"><div class="row"><div class="input-field col l4"><input id="texto1" type="text" class="validate textos" maxlength="20"></div><div class="col l1"><select id="colortexto1" name="colorpicker-picker-option-selected"><option value="#000000">Black</option><option value="#ffffff">White</option><option value="#7bd148">Green</option><option value="#5484ed">Bold blue</option><option value="#a4bdfc">Blue</option><option value="#46d6db">Turquoise</option><option value="#7ae7bf">Light green</option><option value="#51b749">Bold green</option><option value="#fbd75b">Yellow</option><option value="#ffb878">Orange</option><option value="#ff887c">Red</option><option value="#dc2127">Bold red</option><option value="#dbadff">Purple</option><option value="#e1e1e1">Gray</option></select></div><div class="col l1"><a id="check-texto1" class="waves-effect waves-light btn z-depth-0" href="#"><i class="material-icons">check</i></a></div></div>\
+<div class="row"><div class="input-field col l4"><input id="texto2" type="text" class="validate textos"  maxlength="20"></div><div class="col l1"><select id="colortexto2" name="colorpicker-picker-option-selected"><option value="#000000">Black</option><option value="#ffffff">White</option><option value="#7bd148">Green</option><option value="#5484ed">Bold blue</option><option value="#a4bdfc">Blue</option><option value="#46d6db">Turquoise</option><option value="#7ae7bf">Light green</option><option value="#51b749">Bold green</option><option value="#fbd75b">Yellow</option><option value="#ffb878">Orange</option><option value="#ff887c">Red</option><option value="#dc2127">Bold red</option><option value="#dbadff">Purple</option><option value="#e1e1e1">Gray</option></select></div><div class="col l1"><a id="check-texto2" class="waves-effect waves-light btn z-depth-0" href="#"><i class="material-icons">check</i></a></div>';
+                content += data + '</div><div class="row"><div class="input-field col l4"><input id="texto3" type="text" class="validate textos"  maxlength="20"></div><div class="col l1"><select id="colortexto3" name="colorpicker-picker-option-selected"><option value="#000000">Black</option><option value="#ffffff">White</option><option value="#7bd148">Green</option><option value="#5484ed">Bold blue</option><option value="#a4bdfc">Blue</option><option value="#46d6db">Turquoise</option><option value="#7ae7bf">Light green</option><option value="#51b749">Bold green</option><option value="#fbd75b">Yellow</option><option value="#ffb878">Orange</option><option value="#ff887c">Red</option><option value="#dc2127">Bold red</option><option value="#dbadff">Purple</option><option value="#e1e1e1">Gray</option></select></div><div class="col l1"><a id="check-texto3" class="waves-effect waves-light btn z-depth-0" href="#"><i class="material-icons">check</i></a></div></div>\
+<div class="row"><div class="input-field col l4"><input id="texto4" type="text" class="validate textos"  maxlength="20"></div><div class="col l1"><select id="colortexto4" name="colorpicker-picker-option-selected"><option value="#000000">Black</option><option value="#ffffff">White</option><option value="#7bd148">Green</option><option value="#5484ed">Bold blue</option><option value="#a4bdfc">Blue</option><option value="#46d6db">Turquoise</option><option value="#7ae7bf">Light green</option><option value="#51b749">Bold green</option><option value="#fbd75b">Yellow</option><option value="#ffb878">Orange</option><option value="#ff887c">Red</option><option value="#dc2127">Bold red</option><option value="#dbadff">Purple</option><option value="#e1e1e1">Gray</option></select></div><div class="col l1"><a id="check-texto4" class="waves-effect waves-light btn z-depth-0" href="#"><i class="material-icons">check</i></a></div></div></form></div></div>';
                 $('#area-modificable').html(content);
                 divcolor = $('#colores-camiseta').html();
                 $('#colores-camiseta').html('');
                 $('select[name="tipo-letra"]').material_select();
-                $('select[name="colorpicker"]').simplecolorpicker({picker: true});
+                $('select[name="colorpicker-picker-option-selected"]').simplecolorpicker({picker: true});
+                $('#check-texto1').on('click', function (e) {
+                    e.preventDefault();
+                    var txtinput = $('#texto1').val();
+                    if (txtinput !== '') {
+                        var texto;
+                        if ((!canvas.isEmpty()) && (canvas.item(0).getName() === 'textoini')) {
+                            canvas.clear();
+                        }
+                        if ($('select[name="tipo-letra"]').val() !== null) {
+                            if ($('select#colortexto1').val() !== null) {
+                                var fuente = $('select[name="tipo-letra"]').val();
+                                texto = new fabric.Texto(txtinput, {
+                                    left: (canvas.width * 0.10),
+                                    fontFamily: fuente,
+                                    scaleX: 0.33,
+                                    scaleY: 0.33,
+                                    fontSize: 50,
+                                    fill: $('select#colortexto1').val(),
+                                    hasRotatingPoint: false,
+                                    lockScalingFlip: true,
+                                    name: 'texto1'
+                                });
+                            } else {
+                                texto = new fabric.Texto(txtinput, {
+                                    left: (canvas.width * 0.10),
+                                    fontFamily: fuente,
+                                    scaleX: 0.33,
+                                    scaleY: 0.33,
+                                    fontSize: 50,
+                                    hasRotatingPoint: false,
+                                    lockScalingFlip: true,
+                                    name: 'texto1'
+                                });
+                            }
+
+                        } else {
+                            if ($('select#colortexto1').val() !== null) {
+                                var fuente = $('select[name="tipo-letra"]').val();
+                                texto = new fabric.Texto(txtinput, {
+                                    left: (canvas.width * 0.10),
+                                    scaleX: 0.33,
+                                    scaleY: 0.33,
+                                    fontSize: 50,
+                                    fill: $('select#colortexto1').val(),
+                                    hasRotatingPoint: false,
+                                    lockScalingFlip: true,
+                                    name: 'texto1'
+                                });
+                            } else {
+                                texto = new fabric.Texto(txtinput, {
+                                    left: (canvas.width * 0.10),
+                                    scaleX: 0.33,
+                                    scaleY: 0.33,
+                                    fontSize: 50,
+                                    hasRotatingPoint: false,
+                                    lockScalingFlip: true,
+                                    name: 'texto1'
+                                });
+                            }
+                        }
+                        canvas.add(texto);
+                        canvas.renderAll();
+
+                    }
+                });
+
+                $('select[name="tipo-letra"]').on('change', function () {
+                    var obj = canvas.getActiveObject();
+                    if (obj.get("type") === 'texto') {
+                        var valor = $(this).val();
+                        obj.setFontFamily(valor);
+                        canvas.renderAll();
+                    }
+
+
+                });
+
+                $('select#colortexto1').on('change', function () {
+                    var valor = $(this).val();
+                    var obj = canvas.getActiveObject();
+                    if (obj.get("type") === 'texto') {
+                        obj.setColor(valor);
+                        canvas.renderAll();
+                    }
+
+
+                });
+
+                $('#alineacion-izq').on('click', function (e) {
+                    e.preventDefault();
+                    var obj = canvas.getActiveObject();
+                    if (obj.get("type") === 'texto') {
+                        obj.set("left", (canvas.width * 0.10));
+                        obj.setCoords();
+                        canvas.renderAll();
+                    }
+
+
+                });
+                $('#alineacion-drcha').on('click', function (e) {
+                    e.preventDefault();
+                    var obj = canvas.getActiveObject();
+                    if (obj.get("type") === 'texto') {
+                        obj.set("left", (canvas.width * 0.90) - (canvas.getActiveObject().getWidth()));
+                        obj.setCoords();
+                        canvas.renderAll();
+                    }
+
+
+                });
+                $('#alineacion-central').on('click', function (e) {
+                    e.preventDefault();
+                    var obj = canvas.getActiveObject();
+                    if (obj.get("type") === 'texto') {
+                        obj.centerH();
+                        obj.setCoords();
+                        canvas.renderAll();
+                    }
+
+                });
+
             },
             error: function (resp, msg, ex) {
                 alert("Error (" + resp.status + "):" + msg);
             }
         });
+
         $('.boton-active').attr('class', 'waves-effect waves-light btn z-depth-0');
         $(this).attr('class', 'waves-effect waves-light btn z-depth-0 boton-active');
-        
-        $('#check-texto1').on('click',function(e){
-            e.preventDefault();
-            alert('hola');
-            
-        });
+
+
     });
-    
-    
-    
+
+
+
     $('#elige-producto').click(function () {
         $.ajax("ajax/MostrarModelosHombre.php", {
             dataType: 'json',
@@ -303,13 +439,14 @@ window.onload = function () {
         canvas.clear();
         fabric.Image.fromURL(this.src, function (oImg) {
             oImg.set({
+                left: (canvas.width * 0.10),
                 scaleX: (canvas.width * 0.80) / oImg.width,
                 scaleY: (canvas.width * 0.80) / oImg.width,
                 hasRotatingPoint: false,
                 lockScalingFlip: true
             });
             canvas.add(oImg);
-            canvas.centerObject(oImg);
+//            canvas.centerObject(oImg);
             canvas.renderAll();
         });
     });
