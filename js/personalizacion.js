@@ -41,7 +41,7 @@ window.onload = function () {
             options && this.set('name', options.name);
         },
         toObject: function () {
-            return fabric.util.object.extend(this.callSuper('toObject'), {name: this.name});
+            return fabric.util.object.extend(toObject.call(this), {name: this.name});
         },
         getName: function () {
             return this.name;
@@ -255,7 +255,7 @@ window.onload = function () {
                                 lockScalingFlip: true
                             });
                             canvas.add(oImg);
-//                            canvas.centerObject(oImg);
+
                             canvas.renderAll();
                         });
                     }
@@ -345,9 +345,21 @@ window.onload = function () {
                         canvas.add(texto);
                         canvas.renderAll();
 
+
                     }
                 });
-
+                $('#texto1').focus(function () {
+                    activarTexto($(this));
+                });
+                $('#texto2').focus(function () {
+                    activarTexto($(this));
+                });
+                $('#texto3').focus(function () {
+                    activarTexto($(this));
+                });
+                $('#texto4').focus(function () {
+                    activarTexto($(this));
+                });
                 $('select[name="tipo-letra"]').on('change', function () {
                     var obj = canvas.getActiveObject();
                     if (obj.get("type") === 'texto') {
@@ -356,19 +368,15 @@ window.onload = function () {
                         canvas.renderAll();
                     }
 
-
                 });
 
                 $('select#colortexto1').on('change', function () {
-                    var valor = $(this).val();
-                    var obj = canvas.getActiveObject();
-                    if (obj.get("type") === 'texto') {
-                        obj.setColor(valor);
-                        canvas.renderAll();
-                    }
-
-
+                    canvas.setActiveObject(getTextoByName(canvas, 'texto1'));
+                    getTextoByName(canvas, 'texto1').setColor($(this).val());
+                    canvas.renderAll();
                 });
+
+
 
                 $('#alineacion-izq').on('click', function (e) {
                     e.preventDefault();
@@ -408,7 +416,6 @@ window.onload = function () {
                 alert("Error (" + resp.status + "):" + msg);
             }
         });
-
         $('.boton-active').attr('class', 'waves-effect waves-light btn z-depth-0');
         $(this).attr('class', 'waves-effect waves-light btn z-depth-0 boton-active');
 
@@ -446,7 +453,7 @@ window.onload = function () {
                 lockScalingFlip: true
             });
             canvas.add(oImg);
-//            canvas.centerObject(oImg);
+
             canvas.renderAll();
         });
     });
@@ -466,12 +473,35 @@ window.onload = function () {
         LimiteBordes(e);
 
     });
+
     canvas.on({
         'object:selected': Controles,
         'object:moving': LimiteBordes,
-        'object:rotating': LimiteBordes
+        'object:rotating': LimiteBordes,
+        'object:removed': VaciarInput
 
     });
+
+    function VaciarInput(e) {
+        var obj = e.target;
+        if (obj.get("type") === 'texto') {
+            switch (obj.getName()) {
+                case "texto1":
+                    $('#texto1').val("");
+                    break;
+                case "texto2":
+                    $('#texto2').val("");
+                    break;
+                case "texto3":
+                    $('#texto3').val("");
+                    break;
+                case "texto4":
+                    $('#texto4').val("");
+                    break;
+            }
+
+        }
+    }
 
     function LimiteBordes(e) {
         var obj = e.target;
@@ -493,6 +523,7 @@ window.onload = function () {
     }
     function Controles(e) {
         var selectedObject = e.target;
+
         selectedObject.hasRotatingPoint = false;
         selectedObject.customiseCornerIcons({
             settings: {
@@ -518,7 +549,63 @@ window.onload = function () {
             }
         });
         selectedObject.setControlsVisibility({'mt': false, 'mb': false, 'mr': false, 'ml': false});
+        $('#texto1').focus();
+
     }
+
+    function activarTexto(input) {
+
+        switch (input.attr('id')) {
+            case "texto1":
+                canvas.setActiveObject(getTextoByName(canvas, 'texto1'));
+                break;
+            case "texto2":
+                canvas.setActiveObject(getTextoByName(canvas, 'texto2'));
+                break;
+            case "texto3":
+                canvas.setActiveObject(getTextoByName(canvas, 'texto3'));
+                break;
+            case "texto4":
+                canvas.setActiveObject(getTextoByName(canvas, 'texto4'));
+                break;
+
+        }
+
+    }
+
+    function focusInputporTexto(obj) {
+        switch (obj.getName()) {
+            case "texto1":
+                $('#texto1').focus();
+                break;
+            case "texto2":
+                $('#texto2').focus();
+                break;
+            case "texto3":
+                $('#texto3').focus();
+                break;
+            case "texto4":
+                $('#texto4').focus();
+                break;
+
+        }
+
+
+    }
+    function getTextoByName(canvas, nombre) {
+        var textos = canvas.getObjects('texto');
+        if (textos.length > 0) {
+            var i = 0;
+            while (i < textos.length) {
+                if (textos[i].getName() === nombre) {
+                    return textos[i];
+                }
+                i++;
+            }
+        }
+        return null;
+    }
+
 
 
 };
