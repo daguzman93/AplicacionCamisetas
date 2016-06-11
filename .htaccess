@@ -14,5 +14,8 @@ AddCharset utf-8 .atom .css .js .json .rss .vtt .xml
   Deny from all
 </FilesMatch>
 
-
-
+ErrorDocument 400 /AplicacionCamisetas/error.php
+ErrorDocument 401 /AplicacionCamisetas/error.php
+ErrorDocument 403 /AplicacionCamisetas/error.php
+ErrorDocument 404 /AplicacionCamisetas/error.php
+ErrorDocument 500 /AplicacionCamisetas/error.php

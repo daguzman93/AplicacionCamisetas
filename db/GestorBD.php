@@ -87,7 +87,7 @@ class GestorBD {
     }
 
     public function getColoresCamiseta($id) {
-        $array_colores=array();
+        $array_colores = array();
         $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
         $mysqli->set_charset('utf8');
         if (mysqli_connect_errno()) {
@@ -107,8 +107,9 @@ class GestorBD {
         $mysqli->close();
         return $array_colores;
     }
+
     public function getTallasCamiseta($id) {
-        $array_tallas=array();
+        $array_tallas = array();
         $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
         $mysqli->set_charset('utf8');
         if (mysqli_connect_errno()) {
@@ -202,6 +203,60 @@ class GestorBD {
         $query = "SELECT * FROM disenador WHERE correo=?";
         if ($sentencia = $mysqli->prepare($query)) {
             $sentencia->bind_param('s', $email);
+            $sentencia->execute();
+            $sentencia->store_result();
+            if ($sentencia->num_rows > 0) {
+                $bool = TRUE;
+            }
+            $sentencia->close();
+        }
+        $mysqli->close();
+        return $bool;
+    }
+
+    public function almacenarCliente($nombre, $apellidos, $email, $nomusu, $pass) {
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $mysqli->set_charset('utf8');
+        if (mysqli_connect_errno()) {
+            printf("Fallo la conexion: %s\n", mysqli_connect_error());
+            exit();
+        }
+        $query = "INSERT INTO cliente (nombre,apellidos,correo,nombre_usuario,contraseña) VALUES(?,?,?,?,?)";
+        if ($sentencia = $mysqli->prepare($query)) {
+            $sentencia->bind_param('ssssss', $nombre, $apellidos, $email, $nomusu, $pass);
+            $sentencia->execute();
+            $sentencia->close();
+        }
+        $mysqli->close();
+    }
+
+    public function insertarSolititudRegistro($usuario, $fecha, $codigo) {
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $mysqli->set_charset('utf8');
+        if (mysqli_connect_errno()) {
+            printf("Fallo la conexion: %s\n", mysqli_connect_error());
+            exit();
+        }
+        $query = "INSERT INTO solicitud_registro (usuario,fecha,codigo) VALUES(?,?,?)";
+        if ($sentencia = $mysqli->prepare($query)) {
+            $sentencia->bind_param('sss', $usuario, $fecha, $codigo);
+            $sentencia->execute();
+            $sentencia->close();
+        }
+        $mysqli->close();
+    }
+
+    public function existeClienteporNombreUsuario($nomusu) {
+        $bool = FALSE;
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $mysqli->set_charset('utf8');
+        if (mysqli_connect_errno()) {
+            printf("Fallo la conexion: %s\n", mysqli_connect_error());
+            exit();
+        }
+        $query = "SELECT * FROM cliente WHERE nombre_usuario=?";
+        if ($sentencia = $mysqli->prepare($query)) {
+            $sentencia->bind_param('s', $nomusu);
             $sentencia->execute();
             $sentencia->store_result();
             if ($sentencia->num_rows > 0) {

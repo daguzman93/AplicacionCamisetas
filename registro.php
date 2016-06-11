@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="col l6 offset-l3">
                         <p>Introduce tus datos personales junto con un nombre de usuario y contraseña:</p>
-                        <form id="registrocliente" class="col l12">
+                        <form id="registrocliente" class="col l12" action="php/almacenarcliente.php">
                             <div class="row">
                                 <div class="input-field col l8">
                                     <input id="nombre" name="nombre" type="text" data-error=".errornombre">
@@ -54,7 +54,7 @@
                                     <label for="email">Correo electrónico</label>
                                     <div class="errorEmail red-text"></div>
                                 </div>
-                                
+
                             </div>
                             <div class="row">
                                 <div class="input-field col l8">
@@ -65,12 +65,12 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col l6" >
-                                    <input id="pass" name="pass" type="text" data-error=".errorpass">
+                                    <input id="pass" name="pass" type="password" data-error=".errorpass">
                                     <label for="pass">Contraseña</label>
                                     <div class="errorpass red-text"></div>
                                 </div>
                                 <div class="input-field col l6">
-                                    <input id="confpass" name="confpass" type="text" data-error=".errorcofpass">
+                                    <input id="confpass" name="confpass" type="password" data-error=".errorcofpass">
                                     <label for="confpass">Confirma contraseña</label>
                                     <div class="errorcofpass red-text"></div>
                                 </div>
@@ -102,12 +102,10 @@
                     </form>
                 </div>
             </div>
-
         </main>
-    </main>
-    <footer class="page-footer">
-        <?php include_once("includes/piedepagina.html"); ?> 
-    </footer>
+        <footer class="page-footer">
+            <?php include_once("includes/piedepagina.html"); ?> 
+        </footer>
 
-</body>
+    </body>
 </html>

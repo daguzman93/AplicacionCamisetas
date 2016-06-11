@@ -19,7 +19,7 @@ $(document).ready(function () {
             },
             confpass: {
                 required: true,
-                min: 10
+                equalTo:"#pass"
             },
             email: {
                 required: true,
@@ -38,7 +38,7 @@ $(document).ready(function () {
             },
             confpass: {
                 required: "Confirmación de contraseña requerida",
-                min: "Minimo 10 caracteres"
+                equalTo: "Las contraseñas no coinciden"
             },
             email: {
                 required: "Email requerido",
