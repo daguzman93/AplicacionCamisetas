@@ -14,8 +14,8 @@ $(document).ready(function () {
             apellido2: "required",
             nomusu: "required",
             pass: {
-                required: true,
-                min: 10
+                required: true
+                
             },
             confpass: {
                 required: true,
@@ -33,8 +33,8 @@ $(document).ready(function () {
             apellido2: "Segundo apellido requerido",
             nomusu: "Nombre de usuario requerido",
             pass: {
-                required: "Contraseña requerida",
-                min: "Minimo 10 caracteres"
+                required: "Contraseña requerida"
+                
             },
             confpass: {
                 required: "Confirmación de contraseña requerida",

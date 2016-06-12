@@ -11,15 +11,20 @@
  *
  * @author Daniel
  */
-class Cliente extends Usuario{
+require $_SERVER["DOCUMENT_ROOT"] . '/AplicacionCamisetas/class/Usuario.php';
+
+class Cliente extends Usuario {
+
     //put your code here
     private $nomUsuario, $pass, $rol;
-    function __construct($nombre, $apellidos, $correo, $telefono, $direccion, $localidad, $provincia, $cp,$nomUsuario, $pass, $rol) {
+
+    function __construct($id, $nombre, $apellidos, $correo, $telefono, $direccion, $localidad, $provincia, $cp, $nomUsuario, $pass, $rol) {
         parent::__construct($nombre, $apellidos, $correo, $telefono, $direccion, $localidad, $provincia, $cp);
         $this->nomUsuario = $nomUsuario;
         $this->pass = $pass;
         $this->rol = $rol;
     }
+
     public function getApellidos() {
         return parent::getApellidos();
     }
@@ -111,7 +116,5 @@ class Cliente extends Usuario{
     function setRol($rol) {
         $this->rol = $rol;
     }
-
-
 
 }

@@ -1,4 +1,9 @@
-
+<?php
+if (isset($_GET['errores'])) {
+    $aux = stripcslashes($_GET['errores']);
+    $errores = unserialize($aux);
+}
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -28,7 +33,16 @@
                 <div class="row">
                     <div class="col l6 offset-l3">
                         <p>Introduce tus datos personales junto con un nombre de usuario y contraseña:</p>
-                        <form id="registrocliente" class="col l12" action="php/almacenarcliente.php">
+                        <form id="registrocliente" class="col l12" method="POST" action="php/almacenarcliente.php">
+                            <?php if ((isset($errores)) && (count($errores) > 0)) : ?>
+                                <div class="row">
+                                    <div class="input-field col l6 offset-l3">
+                                        <?php for ($i = 0; $i < count($errores); $i++) : ?>
+                                            <p class="center-align red-text"> <?= $errores[$i] ?> </p>
+                                        <?php endfor; ?>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
                             <div class="row">
                                 <div class="input-field col l8">
                                     <input id="nombre" name="nombre" type="text" data-error=".errornombre">

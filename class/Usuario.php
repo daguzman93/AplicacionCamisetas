@@ -12,9 +12,12 @@
  * @author Daniel
  */
 class Usuario {
+
     //put your code here
-    private $id, $nombre, $apellidos, $correo,$telefono, $direccion,$localidad,$provincia, $cp;
-    function __construct($nombre, $apellidos, $correo, $telefono, $direccion, $localidad, $provincia, $cp) {
+    private $id, $nombre, $apellidos, $correo, $telefono, $direccion, $localidad, $provincia, $cp;
+
+    function __construct($id, $nombre, $apellidos, $correo, $telefono, $direccion, $localidad, $provincia, $cp) {
+        $this->id = $id;
         $this->nombre = $nombre;
         $this->apellidos = $apellidos;
         $this->correo = $correo;
@@ -24,6 +27,7 @@ class Usuario {
         $this->provincia = $provincia;
         $this->cp = $cp;
     }
+
     function setNombre($nombre) {
         $this->nombre = $nombre;
     }
@@ -56,7 +60,7 @@ class Usuario {
         $this->cp = $cp;
     }
 
-        function getId() {
+    function getId() {
         return $this->id;
     }
 
@@ -92,6 +96,4 @@ class Usuario {
         return $this->cp;
     }
 
-
-    
 }

@@ -9,6 +9,7 @@ $db = parse_ini_file($_SERVER["DOCUMENT_ROOT"] . '/AplicacionCamisetas/parametro
 include_once ($_SERVER["DOCUMENT_ROOT"] . '/AplicacionCamisetas/class/Camiseta.php');
 include_once ($_SERVER["DOCUMENT_ROOT"] . '/AplicacionCamisetas/class/Stock.php');
 include_once ($_SERVER["DOCUMENT_ROOT"] . '/AplicacionCamisetas/class/Imagen.php');
+include_once ($_SERVER["DOCUMENT_ROOT"] . '/AplicacionCamisetas/class/Cliente.php');
 define('DB_HOST', $db['host']);
 define('DB_USER', $db['user']);
 define('DB_NAME', $db['name']);
@@ -221,9 +222,9 @@ class GestorBD {
             printf("Fallo la conexion: %s\n", mysqli_connect_error());
             exit();
         }
-        $query = "INSERT INTO cliente (nombre,apellidos,correo,nombre_usuario,contraseña) VALUES(?,?,?,?,?)";
+        $query = "INSERT INTO cliente (nombre,apellidos,correo,nombre_usuario,contraseña) VALUES (?,?,?,?,?)";
         if ($sentencia = $mysqli->prepare($query)) {
-            $sentencia->bind_param('ssssss', $nombre, $apellidos, $email, $nomusu, $pass);
+            $sentencia->bind_param('sssss', $nombre, $apellidos, $email, $nomusu, $pass);
             $sentencia->execute();
             $sentencia->close();
         }
@@ -237,7 +238,7 @@ class GestorBD {
             printf("Fallo la conexion: %s\n", mysqli_connect_error());
             exit();
         }
-        $query = "INSERT INTO solicitud_registro (usuario,fecha,codigo) VALUES(?,?,?)";
+        $query = "INSERT INTO solicitud_registro (usuario,fecha,codigo) VALUES (?,?,?)";
         if ($sentencia = $mysqli->prepare($query)) {
             $sentencia->bind_param('sss', $usuario, $fecha, $codigo);
             $sentencia->execute();
@@ -266,6 +267,27 @@ class GestorBD {
         }
         $mysqli->close();
         return $bool;
+    }
+
+    public function getClienteporNomUsuario($nomusu) {
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $mysqli->set_charset('utf8');
+        if (mysqli_connect_errno()) {
+            printf("Fallo la conexion: %s\n", mysqli_connect_error());
+            exit();
+        }
+        $query = "SELECT * FROM cliente WHERE nombre_usuario=?";
+        if ($sentencia = $mysqli->prepare($query)) {
+            $sentencia->bind_param('s', $nomusu);
+            $sentencia->execute();
+            $sentencia->bind_result($id, $nombre, $apellidos, $correo, $telefono, $direccion, $localidad, $provincia, $cp, $nomUsuario, $pass, $rol);
+            while ($sentencia->fetch()) {
+                $cliente = new Cliente($id, $nombre, $apellidos, $correo, $telefono, $direccion, $localidad, $provincia, $cp, $nomUsuario, $pass, $rol);
+            }
+            $sentencia->close();
+        }
+        $mysqli->close();
+        return $cliente;
     }
 
     /*
