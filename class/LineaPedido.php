@@ -12,20 +12,29 @@
  * @author Daniel
  */
 class LineaPedido {
+
     //put your code here
-    private $id, $cantidad, $precio, $camiseta, $pedido;
-    function __construct($cantidad, $precio, $camiseta, $pedido) {
+    private $id, $cantidad, $talla, $precio, $camiseta, $pedido;
+
+    function __construct($id, $cantidad, $talla, $precio, $camiseta, $pedido) {
+        $this->id = $id;
+        $this->talla = $talla;
         $this->cantidad = $cantidad;
         $this->precio = $precio;
         $this->camiseta = $camiseta;
         $this->pedido = $pedido;
     }
+
     function getId() {
         return $this->id;
     }
 
-        function getCantidad() {
-        return $this->cantidad;
+    function getTalla() {
+        return $this->talla;
+    }
+
+    function setTalla($talla) {
+        $this->talla = $talla;
     }
 
     function getPrecio() {
@@ -38,6 +47,9 @@ class LineaPedido {
 
     function getPedido() {
         return $this->pedido;
+    }
+    function getCantidad() {
+        return $this->cantidad;
     }
 
     function setCantidad($cantidad) {
@@ -55,7 +67,5 @@ class LineaPedido {
     function setPedido($pedido) {
         $this->pedido = $pedido;
     }
-
-
 
 }

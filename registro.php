@@ -1,4 +1,5 @@
 <?php
+$provincias = array("A Coruña", "Álava", "Albacete", "Alicante", "Almería", "Araba", "Asturias", "Ávila", "Badajoz", "Baleares", "Barcelona", "Bizkaia", "Burgos", "Cáceres", "Cádiz", "Cantabria", "Castellón", "Ceuta", "Ciudad Real", "Córdoba", "Cuenca", "Gerona", "Gipuzkoa", "Girona", "Granada", "Guadalajara", "Guipuzcoa", "Huelva", "Huesca", "Illes Balears", "Jaén", "La Coruña", "La Rioja", "Las Palmas", "León", "Lérida", "Lleida", "Lugo", "Madrid", "Málaga", "Melilla", "Murcia", "Navarra", "Orense", "Ourense", "Palencia", "Pontevedra", "Salamanca", "Santa Cruz de Tenerife", "Segovia", "Sevilla", "Soria", "Tarragona", "Teruel", "Toledo", "Valencia", "Valladolid", "Vizcaya", "Zamora", "Zaragoza");
 if (isset($_GET['errores'])) {
     $aux = stripcslashes($_GET['errores']);
     $errores = unserialize($aux);
@@ -63,13 +64,51 @@ if (isset($_GET['errores'])) {
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="input-field col l8">
+                                <div class="input-field col l7">
                                     <input id="email" name="email" type="text" data-error=".errorEmail">
                                     <label for="email">Correo electrónico</label>
                                     <div class="errorEmail red-text"></div>
                                 </div>
 
+
+                                <div class="input-field col l5">
+                                    <input id="tlfno" name="tlfno" type="text" data-error=".errortlfno" maxlength="9">
+                                    <label for="tlfno">Teléfono</label>
+                                    <div class="errortlfno red-text"></div>
+                                </div>
+
                             </div>
+                            <div class="row">
+                                <div class="input-field col l7">
+                                    <input id="direccion" name="direccion" type="text" data-error=".errordireccion">
+                                    <label for="direccion">Dirección</label>
+                                    <div class="errordireccion red-text"></div>
+                                </div>
+                                <div class="input-field col l5">
+                                    <input id="localidad" name="localidad" type="text" data-error=".errorlocalidad">
+                                    <label for="localidad">Localidad</label>
+                                    <div class="errorlocalidad red-text"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col l5">
+                                    <select  id="provincia" name="provincia" data-error=".errorprovincia"> 
+                                        <option value="" disabled selected>Elige una opcion</option>
+                                        <?php for ($i = 0; $i < count($provincias); $i++) : ?>
+                                            <option value=" <?= $provincias[$i] ?>"> <?= $provincias[$i] ?></option>
+                                        <?php endfor; ?>
+                                    </select>
+                                    <label>Provincia</label>
+                                    <div class="errorprovincia red-text"></div>
+                                </div>
+
+                                <div class="input-field col l3 offset-l4">
+                                    <input id="cp" name="cp" type="text" data-error=".errorcp" maxlength="5">
+                                    <label for="localidad">C. P.</label>
+                                    <div class="errorcp red-text"></div>
+                                </div>
+                            </div>
+
                             <div class="row">
                                 <div class="input-field col l8">
                                     <input id="nomusu" name="nomusu" type="text" data-error=".erronomusu">
@@ -89,6 +128,7 @@ if (isset($_GET['errores'])) {
                                     <div class="errorcofpass red-text"></div>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <p>
                                     <input type="checkbox"  class="filled-in" id="condiciones" name="condiciones" data-error=".errorCondiciones"/>

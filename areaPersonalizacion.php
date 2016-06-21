@@ -2,6 +2,7 @@
 include_once $_SERVER["DOCUMENT_ROOT"] . '/AplicacionCamisetas/class/Camiseta.php';
 include_once $_SERVER["DOCUMENT_ROOT"] . '/AplicacionCamisetas/db/GestorBD.php';
 include_once $_SERVER["DOCUMENT_ROOT"] . '/AplicacionCamisetas/class/Stock.php';
+session_start();
 $gdb = new GestorBD();
 $lista = $gdb->getCamisetasporGenero("Hombre");
 if (isset($_GET["idcd"])) {
@@ -11,11 +12,13 @@ if (isset($_GET["idcd"])) {
     $array_colores = $gdb->getColoresCamiseta($camiseta->getId());
     $array_tallas = $gdb->getTallasCamiseta($camiseta->getId());
     usort($array_tallas, "cmp");
+    $_SESSION['camiseta'] = $camiseta;
 } else {
     $camiseta = $lista[0];
     $array_colores = $gdb->getColoresCamiseta($camiseta->getId());
     $array_tallas = $gdb->getTallasCamiseta($camiseta->getId());
     usort($array_tallas, "cmp");
+    $_SESSION['camiseta'] = $camiseta;
 }
 
 function cmp($a, $b) {
@@ -82,9 +85,9 @@ function cmp($a, $b) {
                     </div>
 
                     <div class="col l5">
-                        <img  id="area-camiseta"   src="img/fotosMasdeMil/<?= $camiseta->getDelantera() ?>">
+                        <img  id="area-camiseta" src="img/fotosMasdeMil/<?= $camiseta->getDelantera() ?>">
 
-                        <div id="drawingArea">					
+                        <div id="drawingArea" >					
                             <canvas id="tcanvas" ></canvas>
 
                         </div>
@@ -142,54 +145,57 @@ function cmp($a, $b) {
                                     <?php endfor; ?>
                                 </div>
                             </div>  
-                            <div id="colores-camiseta">
-                                <div class="col l12">
+
+                            <form id="cart-form" class="col l12" method="POST" action="#">
+                                <div id="colores-camiseta">
                                     <div class="col l12">
-                                        <p class="letra-pequena">Elige tu color</p>
-                                    </div>
-
-                                </div>
-                                <div class="col l12">
-                                    <?php for ($i = 0; $i < count($array_colores); $i++): ?>
-                                        <div class="col l1">
-                                            <a class="color btn-floating z-depth-0 <?= $array_colores[$i] ?>"></a>
+                                        <div class="col l12">
+                                            <p class="letra-pequena">Elige tu color</p>
                                         </div>
-                                    <?php endfor; ?>
 
-
-                                </div>
-                            </div>
-                            <div id="tallas-camiseta">
-                                <div class="col l12">
+                                    </div>
                                     <div class="col l12">
-                                        <p class="letra-pequena">Elige tu talla</p>
-                                    </div>
+                                        <?php for ($i = 0; $i < count($array_colores); $i++): ?>
+                                            <div class="col l1">
+                                                <input name="<?= $array_colores[$i] ?>" class="color btn-floating z-depth-0 <?= $array_colores[$i] ?>" type="button"  ></input>
+                                            </div>
+                                        <?php endfor; ?>
 
+                                    </div>
+                                </div>
+                                <div id="tallas-camiseta">
+                                    <div class="col l12">
+                                        <div class="col l12">
+                                            <p class="letra-pequena">Elige tu talla</p>
+                                        </div>
+
+                                    </div>
+                                    <div class="col l12">
+                                        <?php for ($i = 0; $i < count($array_tallas); $i++): ?>
+                                            <div class="col l1">
+                                                <input class="btn-floating z-depth-0 white" type="button" name="talla" value="<?= $array_tallas[$i] ?>"></input >
+                                            </div>
+                                        <?php endfor; ?>
+
+                                    </div>
                                 </div>
                                 <div class="col l12">
-                                    <?php for ($i = 0; $i < count($array_tallas); $i++): ?>
-                                        <div class="col l1">
-                                            <a class="color btn-floating z-depth-0 white"><?= $array_tallas[$i] ?></a>
-                                        </div>
-                                    <?php endfor; ?>
+                                    <div class="col l3">
+                                        <p id='precio'><?= $camiseta->getPrecio() ?> €</p>
+                                    </div>
+                                </div> 
+                                <div class="col l12">
+                                    <div class="col l5">
+                                        <button id="anadir-carro" class="waves-effect waves-light btn z-depth-0" type="submit" ><i class="material-icons right">shopping_cart</i>Añadir al carrito</button >
+                                    </div>
+                                </div>
+                            </form>
+                            <div id="modalanadecarrito" class="modal modal-fixed-footer"><div class="modal-content"><p>El producto ha sido añadido a su carrito,¿Desea seguir comprando?</p></div><div class="modal-footer"><a href="verCarrito.php" class="modal-action modal-close waves-effect waves-green btn-flat">Ver carrito</a><a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Seguir comprando</a></div>
 
-                                </div>
                             </div>
-                            <div class="col l12">
-                                <div class="col l3">
-                                    <p id='precio'><?= $camiseta->getPrecio() ?> €</p>
-                                </div>
-                            </div> 
-                            <div class="col l12">
-                                <div class="col l5">
-                                    <a id="anadir-carro" class="waves-effect waves-light btn z-depth-0"><i class="material-icons right">shopping_cart</i>Añadir al carrito</a>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>
-            </div>
         </main>
         <footer class="page-footer">
             <?php include_once("includes/piedepagina.html"); ?> 

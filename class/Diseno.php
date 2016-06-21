@@ -16,7 +16,8 @@ class Diseno {
     //put your code here
     private $id, $nombre, $categoria, $delantera, $trasera, $precio;
 
-    function __construct($nombre, $categoria, $delantera, $trasera, $precio) {
+    function __construct($id, $nombre, $categoria, $delantera, $trasera, $precio) {
+        $this->id = $id;
         $this->nombre = $nombre;
         $this->categoria = $categoria;
         $this->delantera = $delantera;

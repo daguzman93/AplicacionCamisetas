@@ -6,7 +6,7 @@ RewriteBase /
 AddDefaultCharset utf-8
  
 # Forzar la codificación UTF-8 en varios tipos de archivos
-AddCharset utf-8 .atom .css .js .json .rss .vtt .xml
+AddCharset utf-8  .css .js .json 
 
 #Impedir que se pueda acceder a archivos con contenidos sensibles
 <FilesMatch "\.(htaccess|htpasswd|ini|phps|fla|psd|log|sh)$">

@@ -290,6 +290,27 @@ class GestorBD {
         return $cliente;
     }
 
+    public function getImagenDibujoPorID($id) {
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $mysqli->set_charset('utf8');
+        if (mysqli_connect_errno()) {
+            printf("Fallo la conexion: %s\n", mysqli_connect_error());
+            exit();
+        }
+        $query = "SELECT * FROM imagen WHERE id=?";
+        if ($sentencia = $mysqli->prepare($query)) {
+            $sentencia->bind_param('i', $id);
+            $sentencia->execute();
+            $sentencia->bind_result($id, $nombre, $ruta, $precio);
+            while ($sentencia->fetch()) {
+                $imagen = new Imagen($id, $nombre, $ruta, $precio);
+            }
+            $sentencia->close();
+        }
+        $mysqli->close();
+        return $imagen;
+    }
+
     /*
       Binds variables to prepared statement
 

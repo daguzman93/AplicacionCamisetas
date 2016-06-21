@@ -130,13 +130,28 @@ and open the template in the editor.
     background-size: cover;
     /*width: 80px !important;*/
 }
-.color{
+input[type="button"]{
     border-style: solid;
     border-color: black;
     border-width: 0.5px;
     color: black;
     text-align: center;
 }
+/*input.talla{
+    border-style: solid;
+    border-color: black;
+    border-width: 0.5px;
+    color: black;
+    text-align: center;
+}*/
+
+/*input[type="button"]:checked{
+    border-style: solid;
+    border-color: #0095ad;
+    border-width: 0.5px;
+    color: #0095ad;
+    text-align: center;
+}*/
 
 .images-genero{
     border-style: solid;
