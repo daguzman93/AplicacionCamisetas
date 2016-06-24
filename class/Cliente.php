@@ -16,13 +16,22 @@ require $_SERVER["DOCUMENT_ROOT"] . '/AplicacionCamisetas/class/Usuario.php';
 class Cliente extends Usuario {
 
     //put your code here
-    private $nomUsuario, $pass, $rol;
+    private $nomUsuario, $pass, $rol, $estado;
 
-    function __construct($id, $nombre, $apellidos, $correo, $telefono, $direccion, $localidad, $provincia, $cp, $nomUsuario, $pass, $rol) {
-        parent::__construct($nombre, $apellidos, $correo, $telefono, $direccion, $localidad, $provincia, $cp);
+    function __construct($id, $nombre, $apellidos, $correo, $telefono, $direccion, $localidad, $provincia, $cp, $nomUsuario, $pass, $rol, $estado) {
+        parent::__construct($id, $nombre, $apellidos, $correo, $telefono, $direccion, $localidad, $provincia, $cp);
         $this->nomUsuario = $nomUsuario;
         $this->pass = $pass;
         $this->rol = $rol;
+        $this->estado = $estado;
+    }
+
+    public function getEstado() {
+        return $this->estado;
+    }
+
+    public function setEstado($estado) {
+        $this->estado = $estado;
     }
 
     public function getApellidos() {

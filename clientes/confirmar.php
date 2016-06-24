@@ -1,39 +1,25 @@
 <?php
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 include_once $_SERVER["DOCUMENT_ROOT"] . '/AplicacionCamisetas/db/GestorBD.php';
-include_once $_SERVER["DOCUMENT_ROOT"] . '/AplicacionCamisetas/class/Cliente.php';
-$nombre = $_POST['nombre'];
-$apellido1 = $_POST['apellido1'];
-$apellido2 = $_POST['apellido2'];
-$correo = $_POST['email'];
-$tlfno = $_POST['tlfno'];
-$direccion = $_POST['direccion'];
-$localidad = $_POST['localidad'];
-$provincia = $_POST['provincia'];
-$cp = $_POST['cp'];
-$nombusu = $_POST['nomusu'];
-$pass = $_POST['pass'];
-$confpass = $_POST['confpass'];
-$hash = sha1($pass);
-$gdb = new GestorBD();
-$apellidos = $apellido1 . " " . $apellido2;
-if (!$gdb->existeClienteporNombreUsuario($nombusu)) {
-    $gdb->almacenarCliente($nombre, $apellidos, $correo, $tlfno, $direccion, $localidad, $provincia, $cp, $nombusu, $hash);
-    $fecha = date("Y-m-d");
-    $codigover = rand(000000, 999999);
-    $cliente = $gdb->getClienteporNomUsuario($nombusu);
-    $gdb->insertarSolititudRegistro($cliente->getId(), $fecha, $codigover);
-    $headers = "From: danielagustinas@gmail.com";
-    $mensaje = "Usted solicito un registro en Mas de mil,
- Para confirmarlo debe hacer click en el siguiente enlace: 
- http://localhost/AplicacionCamisetas/clientes/confirmar.php?codigover=" . $codigover;
-    if (!mail($correo, "Confirmacion de registro en localhost", $mensaje, $headers))
-        die("No se pudo enviar el email de confirmacion.");
-
-    $mensaje = "Tu cuenta ha sido registrada, sin embargo, esta requiere que la confirmes desde el email que ingresaste en el registro.";
+if (isset($_GET['codigover'])) {
+    $gdb = new GestorBD();
+    $codigo = $_GET['codigover'];
+    $id = $gdb->getIdUsuarioporSolicitud($codigo);
+    if ($gdb->getEstadoCliente($id) == 'activo') {
+        $mensaje = "Tu cuenta ya se habia confirmado anteriormente";
+    } else {
+        $gdb->EstadoActivoCliente($id);
+        $mensaje = "Tu cuenta se ha confirmado y puedes iniciar sesion.";
+    }
 } else {
-    $mensaje = 'Ya existe un cliente con ese nombre de usuario';
+    header("Location: ../index.php");
 }
 ?>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -67,10 +53,11 @@ if (!$gdb->existeClienteporNombreUsuario($nombusu)) {
                     </div>
                 </div>
             </div>
-        </main>
-        <footer class="page-footer">
-            <?php include_once("../includes/piedepagina.html"); ?> 
-        </footer>
 
-    </body>
+        </div>
+    </main>
+    <footer class="page-footer">
+        <?php include_once("../includes/piedepagina.html"); ?> 
+    </footer>
+</body>
 </html>

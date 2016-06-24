@@ -15,9 +15,8 @@ $(document).ready(function () {
             apellido2: "required",
             tlfno: {
                 required: true,
-                digits: true,
-                min: 9,
-                max: 9
+                digits: true
+               
 
             },
             direccion: "required",
@@ -25,14 +24,14 @@ $(document).ready(function () {
             provincia: "required",
             cp: {
                 required: true,
-                digits: true,
-                min: 5,
-                max: 5
+                digits: true
+               
+                
             },
             nomusu: "required",
             pass: {
-                required: true,
-                min: 10
+                required: true
+                
 
             },
             confpass: {
@@ -52,9 +51,8 @@ $(document).ready(function () {
             apellido2: "Segundo apellido requerido",
             tlfno: {
                 required: "Teléfono requerido",
-                digits: "Campo numérico",
-                min: "Teléfono incorrecto",
-                max: "Teléfono incorrecto"
+                digits: "Campo numérico"
+                
 
             },
             direccion: "Dirección requerida",
@@ -62,14 +60,13 @@ $(document).ready(function () {
             provincia: "Provincia requerida",
             cp: {
                 required: "CP requerido",
-                digits: "Campo numérico",
-                min: "CP incorrecto",
-                max: "CP incorrecto"
+                digits: "Campo numérico"
+               
             },
             nomusu: "Nombre de usuario requerido",
             pass: {
-                required: "Contraseña requerida",
-                 min: "Mínimo 10 caracteres"
+                required: "Contraseña requerida"
+                 
 
             },
             confpass: {

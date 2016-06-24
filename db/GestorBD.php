@@ -215,16 +215,27 @@ class GestorBD {
         return $bool;
     }
 
-    public function almacenarCliente($nombre, $apellidos, $email, $nomusu, $pass) {
+    public function almacenarCliente($nombre, $apellidos, $email, $tlfno, $direccion, $localidad, $provincia, $cp, $nomusu, $pass) {
+        $rol = 'cliente';
+        $estado = 'inactivo';
         $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
         $mysqli->set_charset('utf8');
         if (mysqli_connect_errno()) {
             printf("Fallo la conexion: %s\n", mysqli_connect_error());
             exit();
         }
-        $query = "INSERT INTO cliente (nombre,apellidos,correo,nombre_usuario,contraseña) VALUES (?,?,?,?,?)";
+
+        $query = "INSERT INTO usuario (nombre,apellidos,correo,telefono, direccion, localidad, provincia, cp) VALUES (?,?,?,?,?,?,?,?)";
         if ($sentencia = $mysqli->prepare($query)) {
-            $sentencia->bind_param('sssss', $nombre, $apellidos, $email, $nomusu, $pass);
+            $sentencia->bind_param('sssisssi', $nombre, $apellidos, $email, $tlfno, $direccion, $localidad, $provincia, $cp);
+            $sentencia->execute();
+            $sentencia->close();
+        }
+
+        $last_id = $mysqli->insert_id;
+        $query = "INSERT INTO cliente (id,nombre_usuario,contrasena, rol, estado) VALUES (?,?,?,?,?)";
+        if ($sentencia = $mysqli->prepare($query)) {
+            $sentencia->bind_param('issss', $last_id, $nomusu, $pass, $rol, $estado);
             $sentencia->execute();
             $sentencia->close();
         }
@@ -276,13 +287,13 @@ class GestorBD {
             printf("Fallo la conexion: %s\n", mysqli_connect_error());
             exit();
         }
-        $query = "SELECT * FROM cliente WHERE nombre_usuario=?";
+        $query = "SELECT u.id,nombre,apellidos,correo,telefono, direccion, localidad, provincia, cp,nombre_usuario,contrasena, rol, estado FROM usuario as u JOIN cliente as c WHERE u.Id=c.Id AND c.Nombre_usuario=?";
         if ($sentencia = $mysqli->prepare($query)) {
             $sentencia->bind_param('s', $nomusu);
             $sentencia->execute();
-            $sentencia->bind_result($id, $nombre, $apellidos, $correo, $telefono, $direccion, $localidad, $provincia, $cp, $nomUsuario, $pass, $rol);
+            $sentencia->bind_result($id, $nombre, $apellidos, $correo, $telefono, $direccion, $localidad, $provincia, $cp, $nomUsuario, $pass, $rol, $estado);
             while ($sentencia->fetch()) {
-                $cliente = new Cliente($id, $nombre, $apellidos, $correo, $telefono, $direccion, $localidad, $provincia, $cp, $nomUsuario, $pass, $rol);
+                $cliente = new Cliente($id, $nombre, $apellidos, $correo, $telefono, $direccion, $localidad, $provincia, $cp, $nomUsuario, $pass, $rol, $estado);
             }
             $sentencia->close();
         }
@@ -311,6 +322,67 @@ class GestorBD {
         return $imagen;
     }
 
+    public function getIdUsuarioporSolicitud($codigo) {
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $mysqli->set_charset('utf8');
+        if (mysqli_connect_errno()) {
+            printf("Fallo la conexion: %s\n", mysqli_connect_error());
+            exit();
+        }
+        $query = "SELECT usuario FROM solicitud_registro WHERE codigo=?";
+        if ($sentencia = $mysqli->prepare($query)) {
+            $sentencia->bind_param('i', $codigo);
+            $sentencia->execute();
+            $sentencia->bind_result($usuario);
+            while ($sentencia->fetch()) {
+                $result=$usuario;
+            }
+            $sentencia->close();
+        }
+        $mysqli->close();
+
+        return $result;
+    }
+
+    public function EstadoActivoCliente($id) {
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $mysqli->set_charset('utf8');
+        if (mysqli_connect_errno()) {
+            printf("Fallo la conexion: %s\n", mysqli_connect_error());
+            exit();
+        }
+        $query = "UPDATE cliente SET estado='activo' WHERE id=?";
+        if ($sentencia = $mysqli->prepare($query)) {
+            $sentencia->bind_param('i', $id);
+            $sentencia->execute();
+            $sentencia->close();
+        }
+        $mysqli->close();
+    }
+
+    public function getEstadoCliente($id) {
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $mysqli->set_charset('utf8');
+        if (mysqli_connect_errno()) {
+            printf("Fallo la conexion: %s\n", mysqli_connect_error());
+            exit();
+        }
+        $query = " SELECT estado FROM cliente WHERE id=?";
+        if ($sentencia = $mysqli->prepare($query)) {
+            $sentencia->bind_param('i', $id);
+            $sentencia->execute();
+            $sentencia->bind_result($estado);
+            while ($sentencia->fetch()) {
+                $result=$estado;
+            }
+            $sentencia->close();
+        }
+        $mysqli->close();
+
+        return $result;
+    }
+
+//terminar
     /*
       Binds variables to prepared statement
 

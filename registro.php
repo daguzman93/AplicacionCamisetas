@@ -149,7 +149,7 @@ if (isset($_GET['errores'])) {
                                 </div>
                             </div>
                             <div class="col l3 offset-l9">
-                                <button  class="waves-effect waves-light btn z-depth-0" type="submit" >Entrar</button >
+                                <button  class="waves-effect waves-light btn z-depth-0" type="submit" >Registrar</button >
                             </div>
                     </div>
 

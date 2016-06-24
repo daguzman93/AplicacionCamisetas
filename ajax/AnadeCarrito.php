@@ -15,13 +15,13 @@ session_start();
 
 if (isset($_SESSION['carrito'])) {
     $delantera = $_POST['delantera'];
-    $delantera = $_POST['trasera'];
+    $trasera = $_POST['trasera'];
     $talla = $_POST['talla'];
     $diseno = new Diseno("", "", "", $delantera, $trasera, "");
     $camiseta = $_SESSION['camiseta'];
     $color = $_POST['color'];
     $camsetadef = new CamisetaDefinida($camiseta->getID(), $diseño, $color);
-    $linea = new LineaPedido("", 1, $talla, $precio, $camsetadef, "");
+    $linea = new LineaPedido("", 1, $talla, $camiseta->getPrecio(), $camsetadef, "");
     $carrito = unserialize($_SESSION['carrito']);
     $carrito->agregarProducto($linea);
     $_SESSION['carrito'] = serialize($carrito);
@@ -33,7 +33,7 @@ if (isset($_SESSION['carrito'])) {
     $camiseta = $_SESSION['camiseta'];
     $color = $_POST['color'];
     $camsetadef = new CamisetaDefinida($camiseta->getID(), $diseño, $color);
-    $linea = new LineaPedido("", 1, $talla, $precio, $camsetadef, "");
+    $linea = new LineaPedido("", 1, $talla, $camiseta->getPrecio(), $camsetadef, "");
     $carrito = new Carrito();
     $carrito->agregarProducto($linea);
     $_SESSION['carrito'] = serialize($carrito);

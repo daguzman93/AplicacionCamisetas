@@ -896,14 +896,20 @@ window.onload = function () {
     });
 
     $('#previsualizar').click(function () {
-        canvas.isDrawingMode = false;
+//        var canvas2 = document.createElement('canvas');
+//        canvas2.width = 480;
+//        canvas2.height = 525;
+//        canvas2.setBackgroundImage($('#area-camiseta').attr('src'));
+//        window.open(canvas2.toDataURL('png'));
+//        var img = document.getElementById('area-camiseta');
+//        var ctx = canvas.getContext('2d');
+//        var canvas2 = new fabric.Canvas('tcanvas', {
+//            selection: false
+//        });
+//        canvas2.setBackgroundImage($('#area-camiseta').attr('src'));
+//
+//        window.open(canvas2.toDataURL());
 
-        if (!window.localStorage) {
-            alert("This function is not supported by your browser.");
-            return;
-        }
-        // to PNG
-        window.open(canvas.toDataURL('png'));
     });
 };
 
