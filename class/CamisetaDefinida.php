@@ -13,13 +13,13 @@
  */
 class CamisetaDefinida {
 
-    private $id, $diseño, $color;
+    private $id, $diseno, $color;
 
     //put your code here
 
-    function __construct($id, $diseño, $color) {
+    function __construct($id, $diseno, $color) {
         $this->id = $id;
-        $this->diseño = $diseño;
+        $this->diseno = $diseno;
         $this->color = $color;
     }
 
@@ -35,12 +35,12 @@ class CamisetaDefinida {
         $this->color = $color;
     }
 
-    function getDiseño() {
-        return $this->diseño;
+    function getDiseno() {
+        return $this->diseno;
     }
 
-    function setDiseño($diseño) {
-        $this->diseño = $diseño;
+    function setDiseno($diseno) {
+        $this->diseno = $diseno;
     }
 
 }

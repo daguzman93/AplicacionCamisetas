@@ -16,8 +16,8 @@ if ($gdb->existeClienteporNombreUsuario($nomusu)) {
     if ($cliente->getEstado() == 'activo') {
         if (sha1($pass) == $cliente->getPass()) {
             session_start();
-            $_SESSION['cliente'] = $cliente;
-            header("Location ../clientes/index.php");
+            $_SESSION['cliente'] = serialize($cliente);
+            header("Location: ../clientes/index.php");
             exit;
         } else {
             array_push($errores, 'La contraseña no es valida');

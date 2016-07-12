@@ -355,6 +355,8 @@ window.onload = function () {
                         } else {
                             getTextoByName(canvas, "texto1").setText($('#texto1').val());
                         }
+                        texto.scaleToWidth(canvas.width * 0.5);
+                        
                         canvas.renderAll();
                     }
                 });
@@ -418,6 +420,7 @@ window.onload = function () {
                         } else {
                             getTextoByName(canvas, "texto2").setText($('#texto2').val());
                         }
+                        texto.scaleToWidth(canvas.width * 0.5);
                         canvas.renderAll();
                     }
                 });
@@ -482,6 +485,7 @@ window.onload = function () {
                             getTextoByName(canvas, "texto3").setText($('#texto3').val());
 
                         }
+                        texto.scaleToWidth(canvas.width * 0.5);
                         canvas.renderAll();
                     }
                 });
@@ -547,6 +551,7 @@ window.onload = function () {
 
 
                         }
+                        texto.scaleToWidth(canvas.width * 0.5);
                         canvas.renderAll();
                     }
                 });
@@ -567,6 +572,7 @@ window.onload = function () {
                     if (obj.get("type") === 'texto') {
                         var valor = $(this).val();
                         obj.setFontFamily(valor);
+                       
                         canvas.renderAll();
                     }
 
@@ -875,7 +881,12 @@ window.onload = function () {
         if (talla === undefined) {
             alert('Elige una talla');
         } else {
-
+            if(delantera === undefined){
+                delantera="";
+            }
+             if(trasera === undefined){
+                trasera="";
+            }
             $.ajax({
                 type: 'POST',
                 url: "ajax/AnadeCarrito.php",
@@ -883,6 +894,7 @@ window.onload = function () {
                     "trasera": trasera,
                     "talla": talla,
                     "color": color
+                    
                 },
                 success: function () {
                     $('#modalanadecarrito').openModal();
@@ -909,6 +921,16 @@ window.onload = function () {
 //        canvas2.setBackgroundImage($('#area-camiseta').attr('src'));
 //
 //        window.open(canvas2.toDataURL());
+
+        canvas.deactivateAll().renderAll();
+//        html2canvas($("#preview"), {
+//            onrendered: function (canvas) {
+//                var data = canvas.toDataURL('image/png');
+//                window.open(data);
+//            }
+//        });
+        alert(delantera);
+//    window.open(canvas.toDataURL('image/jpeg'));
 
     });
 };

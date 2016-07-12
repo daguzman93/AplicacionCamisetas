@@ -10,6 +10,7 @@ include_once ($_SERVER["DOCUMENT_ROOT"] . '/AplicacionCamisetas/class/Camiseta.p
 include_once ($_SERVER["DOCUMENT_ROOT"] . '/AplicacionCamisetas/class/Stock.php');
 include_once ($_SERVER["DOCUMENT_ROOT"] . '/AplicacionCamisetas/class/Imagen.php');
 include_once ($_SERVER["DOCUMENT_ROOT"] . '/AplicacionCamisetas/class/Cliente.php');
+include_once ($_SERVER["DOCUMENT_ROOT"] . '/AplicacionCamisetas/class/Envio.php');
 define('DB_HOST', $db['host']);
 define('DB_USER', $db['user']);
 define('DB_NAME', $db['name']);
@@ -335,7 +336,7 @@ class GestorBD {
             $sentencia->execute();
             $sentencia->bind_result($usuario);
             while ($sentencia->fetch()) {
-                $result=$usuario;
+                $result = $usuario;
             }
             $sentencia->close();
         }
@@ -373,7 +374,7 @@ class GestorBD {
             $sentencia->execute();
             $sentencia->bind_result($estado);
             while ($sentencia->fetch()) {
-                $result=$estado;
+                $result = $estado;
             }
             $sentencia->close();
         }
@@ -382,7 +383,159 @@ class GestorBD {
         return $result;
     }
 
-//terminar
+    public function getEnvios() {
+        $array_envios = array();
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $mysqli->set_charset('utf8');
+        if (mysqli_connect_errno()) {
+            printf("Fallo la conexion: %s\n", mysqli_connect_error());
+            exit();
+        }
+        $query = " SELECT * FROM envio";
+        if ($sentencia = $mysqli->prepare($query)) {
+            $sentencia->execute();
+            $sentencia->bind_result($id, $nombre, $precio);
+            while ($sentencia->fetch()) {
+                $envio = new Envio($id, $nombre, $precio);
+                array_push($array_envios, $envio);
+            }
+            $sentencia->close();
+        }
+        $mysqli->close();
+        return $array_envios;
+    }
+
+    public function getPrecioEnvioporNombre($nombre) {
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $mysqli->set_charset('utf8');
+        if (mysqli_connect_errno()) {
+            printf("Fallo la conexion: %s\n", mysqli_connect_error());
+            exit();
+        }
+        $query = " SELECT precio FROM envio where nombre=?";
+        if ($sentencia = $mysqli->prepare($query)) {
+            $sentencia->bind_param('s', $nombre);
+            $sentencia->execute();
+            $sentencia->bind_result($precio);
+            while ($sentencia->fetch()) {
+                $result = $precio;
+            }
+            $sentencia->close();
+        }
+        $mysqli->close();
+        return $result;
+    }
+
+    public function getEnvioporNombre($nombre) {
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $mysqli->set_charset('utf8');
+        if (mysqli_connect_errno()) {
+            printf("Fallo la conexion: %s\n", mysqli_connect_error());
+            exit();
+        }
+        $query = " SELECT * FROM envio where nombre=?";
+        if ($sentencia = $mysqli->prepare($query)) {
+            $sentencia->bind_param('s', $nombre);
+            $sentencia->execute();
+            $sentencia->bind_result($id, $nombre, $precio);
+            while ($sentencia->fetch()) {
+                $envio = new Envio($id, $nombre, $precio);
+            }
+            $sentencia->close();
+        }
+        $mysqli->close();
+        return $envio;
+    }
+
+    public function insertarUsuario($nombre, $apellidos, $email, $tlfno, $direccion, $localidad, $provincia, $cp) {
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $mysqli->set_charset('utf8');
+        if (mysqli_connect_errno()) {
+            printf("Fallo la conexion: %s\n", mysqli_connect_error());
+            exit();
+        }
+
+        $query = "INSERT INTO usuario (nombre,apellidos,correo,telefono, direccion, localidad, provincia, cp) VALUES (?,?,?,?,?,?,?,?)";
+        if ($sentencia = $mysqli->prepare($query)) {
+            $sentencia->bind_param('sssisssi', $nombre, $apellidos, $email, $tlfno, $direccion, $localidad, $provincia, $cp);
+            $sentencia->execute();
+            $sentencia->close();
+        }
+        $last_id = $mysqli->insert_id;
+        $mysqli->close();
+        return $last_id;
+    }
+
+    public function insertarPedido($fecha, $precio, $dirección, $pago, $estado, $envio, $usuario) {
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $mysqli->set_charset('utf8');
+        if (mysqli_connect_errno()) {
+            printf("Fallo la conexion: %s\n", mysqli_connect_error());
+            exit();
+        }
+        $query = "INSERT INTO pedido (fecha,precio,direccion,pago, estado, envio, usuario) VALUES (?,?,?,?,?,?,?)";
+        if ($sentencia = $mysqli->prepare($query)) {
+            $sentencia->bind_param('sdsssii', $fecha, $precio, $dirección, $pago, $estado, $envio, $usuario);
+            $sentencia->execute();
+            $sentencia->close();
+        }
+        $last_id = $mysqli->insert_id;
+        $mysqli->close();
+        return $last_id;
+    }
+
+    public function insertarLineaPedido($cantidad, $talla, $precio, $camiseta,$diseno, $pedido) {
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $mysqli->set_charset('utf8');
+        if (mysqli_connect_errno()) {
+            printf("Fallo la conexion: %s\n", mysqli_connect_error());
+            exit();
+        }
+        $query = "INSERT INTO linea_pedido (cantidad, talla, precio, camiseta,diseno, pedido) VALUES (?,?,?,?,?,?)";
+        if ($sentencia = $mysqli->prepare($query)) {
+            $sentencia->bind_param('isdiii', $cantidad, $talla, $precio, $camiseta,$diseno,$pedido);
+            $sentencia->execute();
+            $sentencia->close();
+        }
+        $mysqli->close();
+    }
+    
+    public function insertarCamisetaDefinida($id, $diseno, $color){
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $mysqli->set_charset('utf8');
+        if (mysqli_connect_errno()) {
+            printf("Fallo la conexion: %s\n", mysqli_connect_error());
+            exit();
+        }
+        $query = "INSERT INTO camiseta_definida (id, diseno, color) VALUES (?,?,?)";
+        if ($sentencia = $mysqli->prepare($query)) {
+            $sentencia->bind_param('iis', $id, $diseno, $color);
+            $sentencia->execute();
+            $sentencia->close();
+        }
+        $mysqli->close();
+    }
+    
+    public function insertarDiseno($nombre,$categoria, $parte_delantera,$parte_trasera,$precio){
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $mysqli->set_charset('utf8');
+        if (mysqli_connect_errno()) {
+            printf("Fallo la conexion: %s\n", mysqli_connect_error());
+            exit();
+        }
+        $query = "INSERT INTO diseno (nombre,categoria, parte_delantera,parte_trasera,precio) VALUES (?,?,?,?,?)";
+        if ($sentencia = $mysqli->prepare($query)) {
+            $sentencia->bind_param('ssssd', $nombre,$categoria, $parte_delantera,$parte_trasera,$precio);
+            $sentencia->execute();
+            $sentencia->close();
+        }
+        $last_id = $mysqli->insert_id;
+        $mysqli->close();
+        return $last_id;
+    }
+    
+    
+
     /*
       Binds variables to prepared statement
 

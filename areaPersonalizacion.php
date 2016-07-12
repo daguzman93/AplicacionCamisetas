@@ -61,6 +61,7 @@ function cmp($a, $b) {
         <script type="text/javascript" src="js/personalizacion.js"></script>
         <script type="text/javascript" src="js/jquery.simplecolorpicker.js"></script>
         <script defer  src="js/customiseControls.js"></script>
+        <script type="text/javascript" src="js/html2canvas.js"></script>
 
     </head>
     <body>
@@ -84,12 +85,14 @@ function cmp($a, $b) {
 
                     </div>
 
-                    <div class="col l5">
-                        <img  id="area-camiseta" src="img/fotosMasdeMil/<?= $camiseta->getDelantera() ?>">
+                    <div  class="col l5">
+                        <div id="preview">
+                            <img  id="area-camiseta" src="img/fotosMasdeMil/<?= $camiseta->getDelantera() ?>">
 
-                        <div id="drawingArea" >					
-                            <canvas id="tcanvas" ></canvas>
+                            <div id="drawingArea" >					
+                                <canvas id="tcanvas" ></canvas>
 
+                            </div>
                         </div>
                     </div>
                     <div id="modalimagen" class="modal modal-fixed-footer">

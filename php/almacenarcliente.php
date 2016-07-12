@@ -26,7 +26,7 @@ if (!$gdb->existeClienteporNombreUsuario($nombusu)) {
     $mensaje = "Usted solicito un registro en Mas de mil,
  Para confirmarlo debe hacer click en el siguiente enlace: 
  http://localhost/AplicacionCamisetas/clientes/confirmar.php?codigover=" . $codigover;
-    if (!mail($correo, "Confirmacion de registro en localhost", $mensaje, $headers))
+    if (!mail($correo, "Confirmacion de registro en Mas de Mil", $mensaje, $headers))
         die("No se pudo enviar el email de confirmacion.");
 
     $mensaje = "Tu cuenta ha sido registrada, sin embargo, esta requiere que la confirmes desde el email que ingresaste en el registro.";

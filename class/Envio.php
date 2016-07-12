@@ -12,12 +12,16 @@
  * @author Daniel
  */
 class Envio {
+
     //put your code here
     private $id, $nombre, $precio;
-    function __construct($nombre, $precio) {
+
+    function __construct($id, $nombre, $precio) {
+        $this->id = $id;
         $this->nombre = $nombre;
         $this->precio = $precio;
     }
+
     function getId() {
         return $this->id;
     }
@@ -37,7 +41,5 @@ class Envio {
     function setPrecio($precio) {
         $this->precio = $precio;
     }
-
-
 
 }

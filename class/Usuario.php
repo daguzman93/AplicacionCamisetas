@@ -11,7 +11,7 @@
  *
  * @author Daniel
  */
-class Usuario {
+class Usuario  {
 
     //put your code here
     private $id, $nombre, $apellidos, $correo, $telefono, $direccion, $localidad, $provincia, $cp;
@@ -95,5 +95,7 @@ class Usuario {
     function getCp() {
         return $this->cp;
     }
+
+    
 
 }
